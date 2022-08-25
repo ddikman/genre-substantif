@@ -2,12 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
+    <title>What Noun? French gender lookup</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="container">
+      <h1>What Noun?</h1>
+      <h2>French noun gender lookup</h2>
+      <p>
+        Knowing if a noun is masculine or feminine is important in French. This will help you know if you should use `le` or `la`, `au` or `à la`, `un` or `une`, etc.
+      </p>
+      <div id="app"></div>
+      <p class="resources">
+        <span>Other resources:</span>
+        <a href="https://frenchtogether.com/french-nouns-gender/" target="_blank">How to easily guess the gender of French nouns with 80% accuracy</a>
+        <a href="https://grammar.collinsdictionary.com/french-easy-learning/how-do-you-work-out-the-gender-of-french-nouns" target="_blank">How do you work out the gender of French nouns?</a>
+      </p>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
