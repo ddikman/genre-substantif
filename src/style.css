@@ -177,6 +177,8 @@ input[type="text"] {
   background-position-x: 25px;
   background-position-y: center;
   outline: none;
+  background: #fff;
+  color: var(--color-dark);
 }
 
 input[type="text"]:focus {
