@@ -123,7 +123,7 @@ class Word {
   <div class="container section-top-spacer">
     <div class="row">
       <div class="col-md-6 p-0 hide-mobile">
-        <img src="eiffel.png" />
+        <img src="/eiffel.png" />
       </div>
       <div class="col-md-6 p-0">
         <h2 id="other-resources">Other resources</h2>
