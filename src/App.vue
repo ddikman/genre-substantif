@@ -60,6 +60,7 @@ const debounceLookup = useDebounceFn((value: string) => {
       french: matchedWord.word,
       gender: genders[matchedWord.gender_id.toString()]
   }
+  word.value = matchedWord.word
   addMatch(match.value)
 }, 500)
 
