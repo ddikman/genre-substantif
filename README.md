@@ -6,7 +6,7 @@ Gender lookup for french words, in browser.
 
 The app is hosted at [https://genre-substantif.vercel.app/](https://genre-substantif.vercel.app/)
 
-## Roadmap
+## Roadmap
 
 - Add tool for practice
 - Add more words, the dictionary is missing several now
