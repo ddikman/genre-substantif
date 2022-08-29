@@ -172,19 +172,22 @@ input[type="text"] {
   border: 1px solid var(--color-primary);
   font-size: 18px;
   text-align: center;
-  background-image: url('search-icon.svg');
+  background-image: url('/search-icon.svg');
   background-repeat: no-repeat;
   background-position-x: 25px;
   background-position-y: center;
   outline: none;
-  background: #fff;
+  background-color: none;
   color: var(--color-dark);
 }
 
 input[type="text"]:focus {
   outline: none;
   border-color: var(--color-accent);
-  background-image: url('search-icon-accent.svg');
+  background-image: url('/search-icon-accent.svg');
+  background-repeat: no-repeat;
+  background-position-x: 25px;
+  background-position-y: center;
 }
 
 /** card **/
