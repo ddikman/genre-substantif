@@ -4,6 +4,10 @@ Gender lookup for french words, in browser.
 
 ![Screencast](./example.gif)
 
+There is also a small feature to practice common nouns.
+
+![Practice](./practice.gif)
+
 The app is hosted at [https://genre-substantif.vercel.app/](https://genre-substantif.vercel.app/)
 
 You can also check out the [Figma project](https://www.figma.com/file/8teTdo1t85HnxdnGEQjYTn/What-the-Noun%3F?node-id=0%3A1) behind this app.
