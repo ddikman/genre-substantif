@@ -2,6 +2,7 @@
 
 import { ref } from 'vue'
 import NounLookup from './components/NounLookup.vue'
+import Practice from './components/Practice.vue';
 import { recentFeminine, recentMasculine } from './stores/lookups';
 
 </script>
@@ -40,6 +41,7 @@ import { recentFeminine, recentMasculine } from './stores/lookups';
       </div>
     </div>
   </div>
+  <Practice></Practice>
   <div class="container section-top-spacer">
     <div class="row">
       <div class="col-md-6 p-0 hide-mobile">
