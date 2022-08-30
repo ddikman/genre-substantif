@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
 import { dictionary } from '../data/data'
@@ -9,12 +9,6 @@ import { addWord } from '../stores/lookups';
 
 const word = ref('')
 const match = ref<Word>()
-
-const lastLookup = localStorage.getItem('lastLookup')
-if (lastLookup) {
-  match.value = JSON.parse(lastLookup)
-  word.value = match.value?.french ?? 'homme'
-}
 
 const LAST_LOOKUP_KEY = 'last_word'
 
@@ -44,6 +38,16 @@ const debounceLookup = useDebounceFn((value: string) => {
   addMatch(match.value)
 }, 500)
 
+watch(word, () => {
+  debounceLookup(word.value)
+})
+
+const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
+if (lastLookup) {
+  match.value = Word.fromJSON(JSON.parse(lastLookup))
+  word.value = match.value?.french ?? 'homme'
+}
+
 </script>
 
 <template>
@@ -59,7 +63,7 @@ const debounceLookup = useDebounceFn((value: string) => {
             <input type="text" id="word" v-model="word" class="mb-2" />
             <div v-if="match">
               <p class="mb-2">is</p>
-              <div class="accent subtitle">{{ match.gender }}</div>
+              <div class="accent subtitle gender" v-bind:class="match.gender">{{ match.gender }}</div>
             </div>
             <div v-else>This is not a word we know.</div>
           </div>
@@ -68,3 +72,34 @@ const debounceLookup = useDebounceFn((value: string) => {
     </div>
   </section>
 </template>
+
+<style scoped>
+
+.gender {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30.4px;
+  line-height: 37px;
+}
+.masculine:before {
+  content: ' ';
+  display: inline-block;
+  background: url('/icon-masculine.svg');
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 18px;
+  background-position-y: center;
+}
+
+.feminine:before {
+  content: ' ';
+  display: inline-block;
+  background: url('/icon-feminine.svg');
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 24px;
+  background-position-y: center;
+}
+
+</style>

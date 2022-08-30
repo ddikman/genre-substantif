@@ -1,4 +1,4 @@
-# Genre Substantif
+# le genre de substantifs
 
 Gender lookup for french words, in browser.
 
