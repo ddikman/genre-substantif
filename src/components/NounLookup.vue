@@ -46,6 +46,8 @@ const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
 if (lastLookup) {
   match.value = Word.fromJSON(JSON.parse(lastLookup))
   word.value = match.value?.french ?? 'homme'
+} else {
+  word.value = 'femme'
 }
 
 </script>
