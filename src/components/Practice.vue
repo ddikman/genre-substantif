@@ -1,7 +1,11 @@
 <script setup lang="ts">
 
+import { vOnKeyStroke } from '@vueuse/components'
+import { onKeyStroke } from '@vueuse/core';
 import { ref } from 'vue';
 import { FEMININE, MASCULINE } from '../models/word';
+import ArrowLeft from './ArrowLeft.vue';
+import ArrowRight from './ArrowRight.vue';
 
 interface WordExample {
   word: string;
@@ -62,26 +66,29 @@ const answer = (gender: string) => {
   word.value = randomWord()
 }
 
+onKeyStroke('ArrowLeft', () => answer(FEMININE))
+onKeyStroke('ArrowRight', () => answer(MASCULINE))
+
 </script>
 
 <template>
   <section class="section-top-spacer">
     <div class="content container">
       <div class="row">
-        <div class="col-md-8 section-text text-start p-0">
-          <h1 id="find-gender">Practise</h1>
+        <div class="col-md-6 section-text text-start p-0">
+          <h1 id="find-gender"><span class="accent">Practise</span> makes perfect</h1>
           <div style="max-width: 70%;">
             <p>Try a few words, even if you don’t know them, and see if you can guess which it is.</p>
             <p>We will give you tips along the way!</p>
           </div>
         </div>
-        <div class="col-md-4 p-0">
+        <div class="col-md-6 p-0">
           <div class="card text-center">
             <h2 class="subtitle">{{ word.word }}</h2>
             <div class="button-choices">
-              <button @click="answer(FEMININE)">Feminine</button>
+              <button @click="answer(FEMININE)"><ArrowLeft/> Feminine</button>
               <span>or</span>
-              <button @click="answer(MASCULINE)">Masculine</button>
+              <button @click="answer(MASCULINE)">Masculine <ArrowRight/></button>
             </div>
             <div v-if="answered">
               <hr/>
@@ -112,7 +119,23 @@ const answer = (gender: string) => {
   gap: 0.5rem;
 }
 
+@media only screen and (max-width: 600px) {
+  .button-choices span, .button-choices button svg {
+    display: none
+  }
+}
+
+button svg {
+  fill: var(--color-primary);
+}
+
+button:hover svg {
+  fill: var(--color-accent);
+}
+
 button {
+  display: flex;
+  gap: 0.5em;
   border: 1px solid var(--color-primary);
   border-radius: 22px;
   padding: 13px 16px;
