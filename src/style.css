@@ -267,6 +267,10 @@ input[type="text"]:focus {
     display: none;
   }
 
+  .header img {
+    width: 100%;
+  }
+
   .card {
     padding: 16px;
   }
