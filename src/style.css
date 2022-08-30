@@ -207,7 +207,6 @@ input[type="text"]:focus {
 
   /** vague shadow **/
   box-shadow: 0px 0px 73px 13px #CCE0E7;
-  border-radius: 40px;
 }
 
 /** typography **/
@@ -273,6 +272,7 @@ input[type="text"]:focus {
 
   .card {
     padding: 16px;
+    border-radius: 20px;
   }
 
   footer {
