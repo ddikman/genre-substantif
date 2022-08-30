@@ -1,6 +1,7 @@
 
 import { ref, computed } from 'vue'
 import { Word, MASCULINE, FEMININE } from '../models/word'
+import { event } from 'vue-gtag'
 
 const RECENT_KEY = 'recent_words'
 
@@ -31,6 +32,7 @@ const addWord = (word: Word) => {
 
   recentWords.value.unshift(word)
   localStorage.setItem(RECENT_KEY, JSON.stringify(recentWords.value))
+  event('word', { 'word': word.french })
 }
 
 const recentMasculine = computed(() => {
