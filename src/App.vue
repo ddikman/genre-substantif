@@ -61,7 +61,7 @@ import { recentFeminine, recentMasculine } from './stores/lookups';
   </div>
   <footer>
     <hr />
-    <div>Copyright 2022 <a href="https://www.greycastle.se">Greycastle</a></div>
+    <div>Copyright 2022 <a href="https://www.greycastle.se">Greycastle</a> | <a href="https://twitter.com/almundgrey">Get me at Twitter</a></div>
   </footer>
 </template>
 

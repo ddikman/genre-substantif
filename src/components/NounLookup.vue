@@ -3,7 +3,8 @@
 import { ref, watch } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
-import { dictionary } from '../data/data'
+// import { dictionary } from '../data/data'
+import { lookup, WORD_NOT_FOUND } from '../stores/dictionary';
 import { Word, FEMININE, MASCULINE } from '../models/word';
 import { addWord } from '../stores/lookups';
 
@@ -27,15 +28,23 @@ function addMatch(match: Word) {
   localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(word))
 }
 
-const debounceLookup = useDebounceFn((value: string) => {
-  const matchedWord = dictionary.find((item) => item.word === value.toLowerCase() || toNormalForm(item.word) === value.toLowerCase())
-  if (!matchedWord) {
+const debounceLookup = useDebounceFn(async (value: string) => {
+  // const matchedWord = dictionary.find((item) => item.word === value.toLowerCase() || toNormalForm(item.word) === value.toLowerCase())
+  // if (!matchedWord) {
+  //   match.value = undefined
+  //   return
+  // }
+  // match.value = new Word(matchedWord.word, genders[matchedWord.gender_id.toString()])
+  try {
+    match.value = await lookup(value)
+    word.value = match.value.french
+    addMatch(match.value)
+  } catch (e) {
+    if (e !== WORD_NOT_FOUND) {
+      console.error(e)
+    }
     match.value = undefined
-    return
   }
-  match.value = new Word(matchedWord.word, genders[matchedWord.gender_id.toString()])
-  word.value = matchedWord.word
-  addMatch(match.value)
 }, 500)
 
 watch(word, () => {
@@ -46,6 +55,8 @@ const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
 if (lastLookup) {
   match.value = Word.fromJSON(JSON.parse(lastLookup))
   word.value = match.value?.french ?? 'homme'
+} else {
+  word.value = 'femme'
 }
 
 </script>
@@ -65,7 +76,10 @@ if (lastLookup) {
               <p class="mb-2">is</p>
               <div class="accent subtitle gender" v-bind:class="match.gender">{{ match.gender }}</div>
             </div>
-            <div v-else>This is not a word we know.</div>
+            <div v-else>
+              This word is not in the list yet.<br/>
+              Let me know <a href="https://twitter.com/almundgrey">@almundgray</a>
+            </div>
           </div>
         </div>
       </div>
