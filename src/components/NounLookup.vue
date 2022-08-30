@@ -1,23 +1,26 @@
 <script setup lang="ts">
 
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
 import { dictionary } from '../data/data'
+import { Word, FEMININE, MASCULINE } from '../models/word';
+import { addWord } from '../stores/lookups';
 
 const word = ref('')
 const match = ref<Word>()
 
-const stored = ref<Word[]>([])
-
-const inLocal = localStorage.getItem('words')
-if (inLocal) {
-  stored.value = JSON.parse(inLocal)
+const lastLookup = localStorage.getItem('lastLookup')
+if (lastLookup) {
+  match.value = JSON.parse(lastLookup)
+  word.value = match.value?.french ?? 'homme'
 }
 
+const LAST_LOOKUP_KEY = 'last_word'
+
 const genders: any = {
-  '1': '♂ masculine',
-  '2': '♀ femenine',
+  '1': MASCULINE,
+  '2': FEMININE,
   '3': 'unisex'
 }
 
@@ -26,13 +29,8 @@ function toNormalForm(str: string): string {
 }
 
 function addMatch(match: Word) {
-  const existingIndex = stored.value.findIndex((w) => w.french == match.french)
-  if (existingIndex >= 0) {
-    stored.value.splice(existingIndex, 1)
-  }
-
-  stored.value.unshift(match)
-  localStorage.setItem('words', JSON.stringify(stored.value))
+  addWord(match)
+  localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(word))
 }
 
 const debounceLookup = useDebounceFn((value: string) => {
@@ -41,24 +39,10 @@ const debounceLookup = useDebounceFn((value: string) => {
     match.value = undefined
     return
   }
-  match.value = {
-      french: matchedWord.word,
-      gender: genders[matchedWord.gender_id.toString()]
-  }
+  match.value = new Word(matchedWord.word, genders[matchedWord.gender_id.toString()])
   word.value = matchedWord.word
   addMatch(match.value)
 }, 500)
-
-watch(word, (value) => {
-  localStorage.setItem('lastWord', value)
-  debounceLookup(value)
-})
-
-word.value = localStorage.getItem('lastWord') || 'femme'
-
-class Word {
-  constructor(public french: string, public gender: string) {}
-}
 
 </script>
 

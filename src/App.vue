@@ -2,22 +2,7 @@
 
 import { ref } from 'vue'
 import NounLookup from './components/NounLookup.vue'
-
-const recentFeminine = ref<string[]>([
-  'femme',
-  'musée',
-  'bouchée',
-  'fusée',
-  'chaussée'
-])
-
-const recentMasculine = ref<string[]>([
-  'café',
-  'canapé',
-  'carré',
-  'chapeau',
-  'supermarché',
-])
+import { recentFeminine, recentMasculine } from './stores/lookups';
 
 </script>
 
@@ -34,12 +19,12 @@ const recentMasculine = ref<string[]>([
         <div class="col-md-6 p-0">
         <h2 class="subtitle">♀ Feminine</h2>
         <div class="tag-cloud mt-2">
-          <span class="tag" v-for="value in recentFeminine" :key="value">{{ value }}</span>
+          <span class="tag" v-for="value in recentFeminine" :key="value.french">{{ value.french }}</span>
         </div>
         <div style="margin-top: 64px;"></div>
         <h2 class="subtitle">♂ Masculine</h2>
         <div class="tag-cloud mt-2">
-          <span class="tag" v-for="value in recentMasculine" :key="value">{{ value }}</span>
+          <span class="tag" v-for="value in recentMasculine" :key="value.french">{{ value.french }}</span>
         </div>
       </div>
       </div>
