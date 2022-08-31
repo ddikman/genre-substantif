@@ -20,6 +20,7 @@ const EXCEPTION_E_ENDING = 'This is an exception, despite ending in -e it is mas
 
 let words: WordExample[] = [
   { word: 'legume', 'tip': EXCEPTION_E_ENDING, gender: MASCULINE },
+  { word: 'livre', 'tip': EXCEPTION_E_ENDING, gender: MASCULINE },
   { word: 'fenêtre', 'tip': FEMININE_ENDINGS, gender: FEMININE },
   { word: 'zoo', 'tip': MASCULINE_ENDINGS, gender: MASCULINE },
   { word: 'chat', 'tip': MASCULINE_ENDINGS, gender: MASCULINE },
@@ -29,6 +30,7 @@ let words: WordExample[] = [
   { word: 'maison', 'tip': FEMININE_ENDINGS, gender: FEMININE },
   { word: 'appartement', 'tip': MASCULINE_ENDINGS, gender: MASCULINE },
   { word: 'thé', 'tip': MASCULINE_ENDINGS, gender: MASCULINE },
+  { word: 'chauffeur', 'tip': MASCULINE_ENDINGS, gender: MASCULINE },
   { word: 'café', 'tip': MASCULINE_ENDING_ACCENT, gender: MASCULINE },
   { word: 'salon', 'tip': MASCULINE_ENDINGS, gender: MASCULINE },
   { word: 'addition', 'tip': FEMININE_ENDINGS, gender: FEMININE },
