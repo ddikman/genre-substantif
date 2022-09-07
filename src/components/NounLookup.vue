@@ -13,9 +13,9 @@ const match = ref<Word>()
 const LAST_LOOKUP_KEY = 'last_word'
 
 const genders: any = {
-  '1': MASCULINE,
-  '2': FEMININE,
-  '3': 'unisex'
+  'm': MASCULINE,
+  'f': FEMININE,
+  'n': 'unisex'
 }
 
 function toNormalForm(str: string): string {
@@ -28,13 +28,16 @@ function addMatch(match: Word) {
 }
 
 const debounceLookup = useDebounceFn((value: string) => {
-  const matchedWord = dictionary.find((item) => item.word === value.toLowerCase() || toNormalForm(item.word) === value.toLowerCase())
+  if (!value || value.length === 0) {
+    return
+  }
+  const matchedWord = dictionary.find((item) => item.fr && (item.fr === value.toLowerCase() || toNormalForm(item.fr) === value.toLowerCase()))
   if (!matchedWord) {
     match.value = undefined
     return
   }
-  match.value = new Word(matchedWord.word, genders[matchedWord.gender_id.toString()])
-  word.value = matchedWord.word
+  match.value = new Word(matchedWord.fr, genders[matchedWord.gen])
+  word.value = matchedWord.fr
   addMatch(match.value)
 }, 500)
 
@@ -67,7 +70,7 @@ if (lastLookup) {
               <p class="mb-2">is</p>
               <div class="accent subtitle gender" v-bind:class="match.gender">{{ match.gender }}</div>
             </div>
-            <div v-else>This is not a word we know.</div>
+            <div v-else>This is not a noun we know.</div>
           </div>
         </div>
       </div>

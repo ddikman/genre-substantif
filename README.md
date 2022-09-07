@@ -16,3 +16,7 @@ You can also check out the [Figma project](https://www.figma.com/file/8teTdo1t85
 
 - Replace the dictionary, words like `Paris` says masculine but is feminine, also many words are missing
 - Refactor into separate pages
+
+## Credits
+
+I am relying on the noun csv from [/hbenbel/French-Dictionary](https://github.com/hbenbel/French-Dictionary), converted to json, to provide the gender for words.

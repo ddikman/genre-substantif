@@ -1,4 +1,3 @@
-
 import { ref, computed } from 'vue'
 import { Word, MASCULINE, FEMININE } from '../models/word'
 
