@@ -12,11 +12,34 @@ The app is hosted at [https://genre-substantif.vercel.app/](https://genre-substa
 
 You can also check out the [Figma project](https://www.figma.com/file/8teTdo1t85HnxdnGEQjYTn/What-the-Noun%3F?node-id=0%3A1) behind this app.
 
+## Develop
+
+The app is built on top of [ViteJs](https://vitejs.dev/) for quick local build and hot reload.
+
+```shell
+npm run dev
+```
+
+Look at [App.vue](src/App.vue) as a starting point for the app.
+
+## Deploy
+
+On merging to master, the app is built and released on [Vercel](https://vercel.com/). Since all release instructions are stored in the Vercel account you will not find any build instructions here.
+
+If you want to deploy somewhere else you can run:
+
+```shell
+npm run build
+```
+
+And then deploy the `dist/` folder. Be mindful that the build generates files assuming deployment to the root folder of a domain so if you want to deploy to a subfolder, you will need to change the [public-base-path](https://vitejs.dev/guide/build.html#public-base-path).
+
 ## Roadmap
 
-- Replace the dictionary, words like `Paris` says masculine but is feminine, also many words are missing
 - Refactor into separate pages
 
-## Credits
+## Dictionary / Credits
 
-I am relying on the noun csv from [/hbenbel/French-Dictionary](https://github.com/hbenbel/French-Dictionary), converted to json, to provide the gender for words.
+For the dictionary I am using a reparsed version of [apertium-fra-eng](https://github.com/apertium/apertium-fra-eng).
+
+It is parsed using the `convert-dix.js` format and the jsonized dictionary is stored in `src/data/data.ts`.
