@@ -22,7 +22,7 @@ npm run dev
 
 Look at [App.vue](src/App.vue) as a starting point for the app.
 
-## Deploy
+## Deploy
 
 On merging to master, the app is built and released on [Vercel](https://vercel.com/). Since all release instructions are stored in the Vercel account you will not find any build instructions here.
 
