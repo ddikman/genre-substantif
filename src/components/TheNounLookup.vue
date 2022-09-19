@@ -14,7 +14,7 @@ const LAST_LOOKUP_KEY = 'last_word'
 
 function addMatch(match: Word) {
   addRecentWord(match)
-  localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(searchTerm))
+  localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(match))
 }
 
 const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
@@ -33,7 +33,7 @@ function loadPreviousLookup() {
   const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
   if (lastLookup) {
     foundWord.value = Word.fromJSON(JSON.parse(lastLookup))
-    searchTerm.value = foundWord.value?.french ?? 'homme'
+    searchTerm.value = foundWord.value?.french
   } else {
     searchTerm.value = 'femme'
   }
