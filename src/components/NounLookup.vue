@@ -3,7 +3,7 @@
 import { ref, watch } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
-import { dictionary } from '../data/data'
+import { dictionary } from '../data/dictionary'
 import { Word, FEMININE, MASCULINE } from '../models/word';
 import { addRecentWord } from '../stores/recentWords';
 

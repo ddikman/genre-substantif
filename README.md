@@ -42,4 +42,4 @@ And then deploy the `dist/` folder. Be mindful that the build generates files as
 
 For the dictionary I am using a reparsed version of [apertium-fra-eng](https://github.com/apertium/apertium-fra-eng).
 
-It is parsed using the `convert-dix.js` format and the jsonized dictionary is stored in `src/data/data.ts`.
+It is parsed using the `convert-dix.js` format and the jsonized dictionary is stored in `src/data/dictionary.ts`.

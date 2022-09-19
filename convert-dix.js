@@ -65,7 +65,7 @@ parseString(fs.readFileSync(inputFilePath), function (err, result) {
 import { DictionaryWord } from '../models/dictionaryWord.ts'
 
 export const dictionary: DictionaryWord[] = ${JSON.stringify(words, null, 2)}`
-  fs.writeFileSync('src/data/data.ts', content);
+  fs.writeFileSync('src/data/dictionary.ts', content);
 
   console.log(`Writing ${words.length} nouns..`)
   console.log('Done')
