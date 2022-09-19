@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
 import { ref } from 'vue'
-import NounLookup from './components/NounLookup.vue'
-import Practice from './components/Practice.vue';
+import TheNounLookup from './components/TheNounLookup.vue'
+import ThePractice from './components/ThePractice.vue';
 import TheHeader from './components/TheHeader.vue';
 import TheRecentLookups from './components/TheRecentLookups.vue';
 
@@ -10,9 +10,9 @@ import TheRecentLookups from './components/TheRecentLookups.vue';
 
 <template>
   <TheHeader />
-  <NounLookup />
+  <TheNounLookup />
   <TheRecentLookups />
-  <Practice></Practice>
+  <ThePractice />
   <div class="container section-top-spacer">
     <div class="row">
       <div class="col-md-6 p-0 hide-mobile">
