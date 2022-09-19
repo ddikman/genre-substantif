@@ -1,5 +1,4 @@
-import { dictionary } from '../data/dictionary'
-import { DictionaryWord } from '../models/dictionaryWord';
+import { dictionary } from './dictionary'
 import { Word, FEMININE, MASCULINE } from '../models/word';
 
 const genders: any = {

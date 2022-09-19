@@ -5,7 +5,7 @@ import { ref, watch } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { Word } from '../models/word';
 import { addRecentWord } from '../stores/recentWords';
-import { lookupWord } from '../stores/lookupWord';
+import { lookupWord } from '../services/lookupWord';
 
 const searchTerm = ref('')
 const foundWord = ref<Word>()
