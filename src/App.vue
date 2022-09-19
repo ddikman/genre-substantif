@@ -17,9 +17,3 @@ import TheFooter from './components/TheFooter.vue';
   <TheResources />
   <TheFooter />
 </template>
-
-<style scoped>
-#word {
-  display: block;
-}
-</style>

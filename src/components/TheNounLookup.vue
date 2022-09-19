@@ -67,6 +67,9 @@ loadPreviousLookup()
 </template>
 
 <style scoped>
+#word {
+  display: block;
+}
 
 .gender {
   font-family: 'Inter';
