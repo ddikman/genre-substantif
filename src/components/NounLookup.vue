@@ -17,18 +17,16 @@ function addMatch(match: Word) {
   localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(word))
 }
 
+const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
 const debounceLookup = useDebounceFn((value: string) => {
   match.value = lookupWord(value)
-  if (!match.value) {
-    return
+  if (match.value) {
+    word.value = match.value.french
+    addMatch(match.value)
   }
-  word.value = match.value.french
-  addMatch(match.value)
-}, 500)
+}, WAIT_MS_UNTIL_NEXT_LOOKUP)
 
-watch(word, () => {
-  debounceLookup(word.value)
-})
+watch(word, () => debounceLookup(word.value))
 
 function loadPreviousLookup() {
   const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
