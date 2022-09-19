@@ -22,7 +22,7 @@ if (storedLocally) {
   recentWords.value = JSON.parse(storedLocally).map(Word.fromJSON)
 }
 
-const addWord = (word: Word) => {
+const addRecentWord = (word: Word) => {
   const index = recentWords.value.findIndex((w) => w.french === word.french)
   if (index >= 0) {
     recentWords.value.splice(index, 1)
@@ -44,5 +44,5 @@ export {
   recentWords,
   recentMasculine,
   recentFeminine,
-  addWord
+  addRecentWord
 }

@@ -3,7 +3,7 @@
 import { ref } from 'vue'
 import NounLookup from './components/NounLookup.vue'
 import Practice from './components/Practice.vue';
-import { recentFeminine, recentMasculine } from './stores/lookups';
+import { recentFeminine, recentMasculine } from './stores/recentWords';
 
 </script>
 

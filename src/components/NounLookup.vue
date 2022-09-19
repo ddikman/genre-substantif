@@ -5,7 +5,7 @@ import { ref, watch } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { dictionary } from '../data/data'
 import { Word, FEMININE, MASCULINE } from '../models/word';
-import { addWord } from '../stores/lookups';
+import { addRecentWord } from '../stores/recentWords';
 
 const word = ref('')
 const match = ref<Word>()
@@ -23,7 +23,7 @@ function toNormalForm(str: string): string {
 }
 
 function addMatch(match: Word) {
-  addWord(match)
+  addRecentWord(match)
   localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(word))
 }
 
