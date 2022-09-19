@@ -3,9 +3,9 @@
 import { ref, watch } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
-import { dictionary } from '../data/dictionary'
 import { Word, FEMININE, MASCULINE } from '../models/word';
 import { addRecentWord } from '../stores/recentWords';
+import { lookupWord } from '../stores/lookupWord';
 
 const word = ref('')
 const match = ref<Word>()
@@ -18,10 +18,6 @@ const genders: any = {
   'n': 'unisex'
 }
 
-function toNormalForm(str: string): string {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
 function addMatch(match: Word) {
   addRecentWord(match)
   localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(word))
@@ -31,7 +27,7 @@ const debounceLookup = useDebounceFn((value: string) => {
   if (!value || value.length === 0) {
     return
   }
-  const matchedWord = dictionary.find((item) => item.fr && (item.fr === value.toLowerCase() || toNormalForm(item.fr) === value.toLowerCase()))
+  const matchedWord = lookupWord(value)
   if (!matchedWord) {
     match.value = undefined
     return

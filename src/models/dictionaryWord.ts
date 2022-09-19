@@ -1,5 +1,5 @@
 export interface DictionaryWord {
-  french: string;
+  fr: string;
   en: string;
   gen: string;
 }
