@@ -3,18 +3,15 @@
 import { ref, watch } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
-import { Word } from '../models/word';
-import { addRecentWord } from '../stores/recentWords';
+import { FEMININE, Word } from '../models/word';
+import { addRecentWord, getMostRecentWord } from '../stores/recentWords';
 import { lookupWord } from '../services/lookupWord';
 
 const searchTerm = ref('')
 const foundWord = ref<Word>()
 
-const LAST_LOOKUP_KEY = 'last_word'
-
 function addMatch(match: Word) {
   addRecentWord(match)
-  localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(match))
 }
 
 const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
@@ -30,13 +27,8 @@ const debounceLookup = useDebounceFn((value: string) => {
 watch(searchTerm, () => debounceLookup(searchTerm.value))
 
 function loadPreviousLookup() {
-  const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
-  if (lastLookup) {
-    foundWord.value = Word.fromJSON(JSON.parse(lastLookup))
-    searchTerm.value = foundWord.value?.french
-  } else {
-    searchTerm.value = 'femme'
-  }
+  foundWord.value = getMostRecentWord(new Word('femme', FEMININE))
+  searchTerm.value = foundWord.value?.french || 'femme'
 }
 
 loadPreviousLookup()

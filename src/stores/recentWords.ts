@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { Word, MASCULINE, FEMININE } from '../models/word'
 
 const RECENT_KEY = 'recent_words'
+const LAST_LOOKUP_KEY = 'last_word'
 
 const recentWords = ref<Word[]>([
   new Word('femme', FEMININE),
@@ -22,6 +23,14 @@ if (storedLocally) {
   recentWords.value = JSON.parse(storedLocally).map(Word.fromJSON)
 }
 
+const getMostRecentWord = (fallback: Word) => {
+  const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
+  if (lastLookup) {
+    return Word.fromJSON(JSON.parse(lastLookup))
+  }
+  return fallback
+}
+
 const addRecentWord = (word: Word) => {
   const index = recentWords.value.findIndex((w) => w.french === word.french)
   if (index >= 0) {
@@ -30,6 +39,7 @@ const addRecentWord = (word: Word) => {
 
   recentWords.value.unshift(word)
   localStorage.setItem(RECENT_KEY, JSON.stringify(recentWords.value))
+  localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(word))
 }
 
 const recentMasculine = computed(() => {
@@ -44,5 +54,6 @@ export {
   recentWords,
   recentMasculine,
   recentFeminine,
-  addRecentWord
+  addRecentWord,
+  getMostRecentWord
 }
