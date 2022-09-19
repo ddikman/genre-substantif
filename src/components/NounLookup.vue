@@ -3,7 +3,7 @@
 import { ref, watch } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
-import { Word, FEMININE, MASCULINE } from '../models/word';
+import { Word } from '../models/word';
 import { addRecentWord } from '../stores/recentWords';
 import { lookupWord } from '../stores/lookupWord';
 
@@ -12,28 +12,17 @@ const match = ref<Word>()
 
 const LAST_LOOKUP_KEY = 'last_word'
 
-const genders: any = {
-  'm': MASCULINE,
-  'f': FEMININE,
-  'n': 'unisex'
-}
-
 function addMatch(match: Word) {
   addRecentWord(match)
   localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(word))
 }
 
 const debounceLookup = useDebounceFn((value: string) => {
-  if (!value || value.length === 0) {
+  match.value = lookupWord(value)
+  if (!match.value) {
     return
   }
-  const matchedWord = lookupWord(value)
-  if (!matchedWord) {
-    match.value = undefined
-    return
-  }
-  match.value = new Word(matchedWord.fr, genders[matchedWord.gen])
-  word.value = matchedWord.fr
+  word.value = match.value.french
   addMatch(match.value)
 }, 500)
 
