@@ -4,20 +4,12 @@ import { ref } from 'vue'
 import NounLookup from './components/NounLookup.vue'
 import Practice from './components/Practice.vue';
 import { recentFeminine, recentMasculine } from './stores/recentWords';
+import TheHeader from './components/TheHeader.vue';
 
 </script>
 
 <template>
-  <div class="container header mt-2 mb-4">
-    <div class="header-contents">
-      <img src="/logo.svg" />
-      <ul>
-        <li><a href="#find-gender">Find gender</a></li>
-        <li><a href="#other-resources">Resources</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </div>
-  </div>
+  <TheHeader />
   <NounLookup />
   <div class="fullwidth contrast-background">
     <div class="section-top-spacer container">
