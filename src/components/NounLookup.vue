@@ -7,34 +7,35 @@ import { Word } from '../models/word';
 import { addRecentWord } from '../stores/recentWords';
 import { lookupWord } from '../stores/lookupWord';
 
-const word = ref('')
-const match = ref<Word>()
+const searchTerm = ref('')
+const foundWord = ref<Word>()
 
 const LAST_LOOKUP_KEY = 'last_word'
 
 function addMatch(match: Word) {
   addRecentWord(match)
-  localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(word))
+  localStorage.setItem(LAST_LOOKUP_KEY, JSON.stringify(searchTerm))
 }
 
 const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
 const debounceLookup = useDebounceFn((value: string) => {
-  match.value = lookupWord(value)
-  if (match.value) {
-    word.value = match.value.french
-    addMatch(match.value)
+  foundWord.value = lookupWord(value)
+  if (foundWord.value) {
+    // correct search term to add accents or so to match the actual word
+    searchTerm.value = foundWord.value.french
+    addMatch(foundWord.value)
   }
 }, WAIT_MS_UNTIL_NEXT_LOOKUP)
 
-watch(word, () => debounceLookup(word.value))
+watch(searchTerm, () => debounceLookup(searchTerm.value))
 
 function loadPreviousLookup() {
   const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
   if (lastLookup) {
-    match.value = Word.fromJSON(JSON.parse(lastLookup))
-    word.value = match.value?.french ?? 'homme'
+    foundWord.value = Word.fromJSON(JSON.parse(lastLookup))
+    searchTerm.value = foundWord.value?.french ?? 'homme'
   } else {
-    word.value = 'femme'
+    searchTerm.value = 'femme'
   }
 }
 
@@ -52,10 +53,10 @@ loadPreviousLookup()
         </div>
         <div class="col-md-4 p-0">
           <div class="card text-center">
-            <input type="text" id="word" v-model="word" class="mb-2" />
-            <div v-if="match">
+            <input type="text" id="word" v-model="searchTerm" class="mb-2" />
+            <div v-if="foundWord">
               <p class="mb-2">is</p>
-              <div class="accent subtitle gender" v-bind:class="match.gender">{{ match.gender }}</div>
+              <div class="accent subtitle gender" v-bind:class="foundWord.gender">{{ foundWord.gender }}</div>
             </div>
             <div v-else>This is not a noun we know.</div>
           </div>
