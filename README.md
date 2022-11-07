@@ -22,6 +22,16 @@ npm run dev
 
 Look at [App.vue](src/App.vue) as a starting point for the app.
 
+### API
+
+The application also has some backend functionality which is hosted with the [vercel serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions). These can be foud in the `./api` folder and to run them locally, run `npm run api`.
+
+Then you can run the API for example by:
+
+```
+curl -X POST http://localhost:3000/api/request?word=bob
+```
+
 ## Deploy
 
 On merging to master, the app is built and released on [Vercel](https://vercel.com/). Since all release instructions are stored in the Vercel account you will not find any build instructions here.
