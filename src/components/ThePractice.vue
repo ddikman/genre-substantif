@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import { vOnKeyStroke } from '@vueuse/components'
 import { onKeyStroke } from '@vueuse/core';
 import { ref } from 'vue';
 import { FEMININE, MASCULINE } from '../models/word';
