@@ -8,9 +8,11 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "api": "npx vercel dev"
   },
   "dependencies": {
+    "@slack/web-api": "^6.7.2",
     "@vueuse/components": "^9.1.1",
     "@vueuse/core": "^9.1.1",
     "vue": "^3.2.37"
