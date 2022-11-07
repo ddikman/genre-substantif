@@ -1,11 +1,12 @@
 <script setup lang="ts">
 
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
 import { FEMININE, Word } from '../models/word';
 import { addRecentWord, getMostRecentWord } from '../stores/recentWords';
 import { lookupWord } from '../services/lookupWord';
+import { dictionary } from '../services/dictionary';
 
 const searchTerm = ref('')
 const foundWord = ref<Word>()
@@ -31,6 +32,13 @@ function loadPreviousLookup() {
   searchTerm.value = foundWord.value?.french || 'femme'
 }
 
+const english = computed(() => {
+  if (foundWord.value) {
+    return dictionary.find((entry) => entry.fr === foundWord.value?.french)?.en
+  }
+  return ''
+})
+
 loadPreviousLookup()
 
 </script>
@@ -47,7 +55,7 @@ loadPreviousLookup()
           <div class="card text-center">
             <input type="text" id="word" v-model="searchTerm" class="mb-2" />
             <div v-if="foundWord">
-              <p class="mb-2">is</p>
+              <p class="mb-2">means <span class="english">{{ english }}</span> and is</p>
               <div class="accent subtitle gender" v-bind:class="foundWord.gender">{{ foundWord.gender }}</div>
             </div>
             <div v-else>This is not a noun we know.</div>
@@ -88,6 +96,11 @@ loadPreviousLookup()
   width: 25px;
   height: 24px;
   background-position-y: center;
+}
+
+.english {
+  font-style: italic;
+  color: var(--color-accent);
 }
 
 </style>
