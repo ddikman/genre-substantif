@@ -7,6 +7,7 @@ import { FEMININE, Word } from '../models/word';
 import { addRecentWord, getMostRecentWord } from '../stores/recentWords';
 import { lookupWord } from '../services/lookupWord';
 import { dictionary } from '../services/dictionary';
+import TheNotFoundNotice from './TheNotFoundNotice.vue';
 
 const searchTerm = ref('')
 const foundWord = ref<Word>()
@@ -58,7 +59,9 @@ loadPreviousLookup()
               <p class="mb-2">means <span class="english">{{ english }}</span> and is</p>
               <div class="accent subtitle gender" v-bind:class="foundWord.gender">{{ foundWord.gender }}</div>
             </div>
-            <div v-else>This is not a noun we know.</div>
+            <div v-else>
+              <TheNotFoundNotice :word="searchTerm" />
+            </div>
           </div>
         </div>
       </div>

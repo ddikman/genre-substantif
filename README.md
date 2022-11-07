@@ -22,17 +22,19 @@ npm run dev
 
 Look at [App.vue](src/App.vue) as a starting point for the app.
 
-### API
+### Vercel and API
 
-The application also has some backend functionality which is hosted with the [vercel serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions). These can be foud in the `./api` folder and to run them locally, run `npm run api`.
+The application also has some backend functionality which is hosted with the [vercel serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions). These can be foud in the `./api` folder.
 
-Then you can run the API for example by:
+If you want to run with vercel and using the vercel environment config, run `npm run vercel` and it will pull down what is needed and run both frontend and apis.
 
 ```
 curl -X POST http://localhost:3000/api/request?word=bob
 ```
 
-Please note that there are environment settings used for these functions that must be defined before running.
+### Environment settings
+
+There are two sets of environment variables, those prefixed with `VITE_` which are replaced compile-time by [Vite](https://vitejs.dev/guide/env-and-mode.html) for the client pages and others accessed by `process.env` in the `./api` functions. All of these are configured in `Vercel` and can be pulled down by running `vercel env pull`. Unfortunately, `vercel dev` doesn't support `env.local` so it is instead pulled down to `.env` which is why this file is not checked in as an example, instead look at [.env.example](./.env.example) for the environment variables used.
 
 ## Deploy
 
