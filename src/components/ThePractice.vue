@@ -3,8 +3,9 @@
 import { onKeyStroke } from '@vueuse/core';
 import { ref } from 'vue';
 import { FEMININE, MASCULINE } from '../models/word';
-import ArrowLeft from './ArrowLeft.vue';
-import ArrowRight from './ArrowRight.vue';
+import AppArrowLeft from './AppArrowLeft.vue';
+import AppArrowRight from './AppArrowRight.vue';
+import AppButton from './AppButton.vue';
 
 interface WordExample {
   word: string;
@@ -87,9 +88,9 @@ onKeyStroke('ArrowRight', () => answer(MASCULINE))
           <div class="card text-center">
             <h2 class="subtitle">{{ word.word }}</h2>
             <div class="button-choices">
-              <button @click="answer(FEMININE)"><ArrowLeft/> Feminine</button>
+              <AppButton @click="answer(FEMININE)"><AppArrowLeft/> Feminine</AppButton>
               <span>or</span>
-              <button @click="answer(MASCULINE)">Masculine <ArrowRight/></button>
+              <AppButton @click="answer(MASCULINE)">Masculine <AppArrowRight/></AppButton>
             </div>
             <div v-if="answered">
               <hr/>
@@ -124,38 +125,6 @@ onKeyStroke('ArrowRight', () => answer(MASCULINE))
   .button-choices span, .button-choices button svg {
     display: none
   }
-}
-
-button svg {
-  fill: var(--color-primary);
-}
-
-button:hover svg {
-  fill: var(--color-accent);
-}
-
-button {
-  display: flex;
-  gap: 0.5em;
-  border: 1px solid var(--color-primary);
-  border-radius: 22px;
-  padding: 13px 16px;
-
-  color: var(--color-primary);
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-}
-
-button:hover {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-button:focus {
-  outline: none;
 }
 
 </style>
