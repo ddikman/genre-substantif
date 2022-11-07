@@ -32,6 +32,8 @@ Then you can run the API for example by:
 curl -X POST http://localhost:3000/api/request?word=bob
 ```
 
+Please note that there are environment settings used for these functions that must be defined before running.
+
 ## Deploy
 
 On merging to master, the app is built and released on [Vercel](https://vercel.com/). Since all release instructions are stored in the Vercel account you will not find any build instructions here.
