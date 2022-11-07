@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "api": "npx vercel dev"
+    "vercel": "npx vercel env pull && npx vercel dev"
   },
   "dependencies": {
     "@slack/web-api": "^6.7.2",

@@ -26,3 +26,6 @@ dist-ssr
 # Testing
 coverage
 .vercel
+
+# Environment, excluded because vercel dev doesn't support env.local
+.env
