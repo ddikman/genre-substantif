@@ -18,12 +18,19 @@ const recentWords = ref<Word[]>([
   new Word('supermarché', MASCULINE),
 ])
 
-const storedLocally = localStorage.getItem(RECENT_KEY)
-if (storedLocally) {
-  recentWords.value = JSON.parse(storedLocally).map(Word.fromJSON)
+const inClient = typeof window !== 'undefined'
+
+if (inClient) {
+  const storedLocally = localStorage.getItem(RECENT_KEY)
+  if (storedLocally) {
+    recentWords.value = JSON.parse(storedLocally).map(Word.fromJSON)
+  }
 }
 
 const getMostRecentWord = (fallback: Word) => {
+  if (!inClient) {
+    return fallback
+  }
   const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
   if (lastLookup) {
     return Word.fromJSON(JSON.parse(lastLookup))

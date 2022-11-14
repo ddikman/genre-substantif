@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build --ssrManifest",
+    "build:server": "vue-tsc --noEmit && vite build --ssr src/entry-server.ts --outDir dist/server",
+    "generate": "vite build --ssrManifest --outDir dist/static && npm run build:server && node prerender",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
@@ -15,7 +17,7 @@
     "@slack/web-api": "^6.8.0",
     "@vueuse/components": "^9.5.0",
     "@vueuse/core": "^9.5.0",
-    "vite-plugin-ssr": "^0.4.48",
+    "ts-node": "^10.9.1",
     "vue": "^3.2.45"
   },
   "devDependencies": {
