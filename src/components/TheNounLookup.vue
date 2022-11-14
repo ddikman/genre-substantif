@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
 import { FEMININE, Word } from '../models/word';
@@ -40,7 +40,7 @@ const english = computed(() => {
   return ''
 })
 
-loadPreviousLookup()
+onMounted(loadPreviousLookup)
 
 </script>
 
