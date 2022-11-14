@@ -12,17 +12,18 @@
     "vercel": "npx vercel env pull && npx vercel dev"
   },
   "dependencies": {
-    "@slack/web-api": "^6.7.2",
-    "@vueuse/components": "^9.1.1",
-    "@vueuse/core": "^9.1.1",
-    "vue": "^3.2.37"
+    "@slack/web-api": "^6.8.0",
+    "@vueuse/components": "^9.5.0",
+    "@vueuse/core": "^9.5.0",
+    "vite-plugin-ssr": "^0.4.48",
+    "vue": "^3.2.45"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^3.0.3",
-    "@vitest/coverage-c8": "^0.23.4",
-    "typescript": "^4.6.4",
-    "vite": "^3.0.7",
-    "vitest": "^0.23.4",
-    "vue-tsc": "^0.39.5"
+    "@vitejs/plugin-vue": "^3.2.0",
+    "@vitest/coverage-c8": "^0.25.2",
+    "typescript": "^4.8.4",
+    "vite": "^3.2.3",
+    "vitest": "^0.25.2",
+    "vue-tsc": "^1.0.9"
   }
 }
