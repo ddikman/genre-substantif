@@ -50,7 +50,7 @@ And then deploy the `dist/` folder. Be mindful that the build generates files as
 
 ## Roadmap
 
-- Refactor into separate pages
+- Handling cases where multiple matches are found in dictionary (like `maison` for example)
 
 ## Dictionary / Credits
 
