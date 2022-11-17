@@ -6,6 +6,7 @@ import { FEMININE, MASCULINE } from '../models/word';
 import AppArrowLeft from './AppArrowLeft.vue';
 import AppArrowRight from './AppArrowRight.vue';
 import AppButton from './AppButton.vue';
+import AppClientOnly from './AppClientOnly.vue';
 
 interface WordExample {
   word: string;
@@ -74,37 +75,39 @@ onKeyStroke('ArrowRight', () => answer(MASCULINE))
 </script>
 
 <template>
-  <section class="section-top-spacer">
-    <div class="content container">
-      <div class="row">
-        <div class="col-md-6 section-text text-start p-0">
-          <h1 id="find-gender"><span class="accent">Practise</span> makes perfect</h1>
-          <div style="max-width: 70%;">
-            <p>Try a few words, even if you don’t know them, and see if you can guess which it is.</p>
-            <p>We will give you tips along the way!</p>
+  <AppClientOnly>
+    <section class="section-top-spacer">
+      <div class="content container">
+        <div class="row">
+          <div class="col-md-6 section-text text-start p-0">
+            <h1 id="find-gender"><span class="accent">Practise</span> makes perfect</h1>
+            <div style="max-width: 70%;">
+              <p>Try a few words, even if you don’t know them, and see if you can guess which it is.</p>
+              <p>We will give you tips along the way!</p>
+            </div>
           </div>
-        </div>
-        <div class="col-md-6 p-0">
-          <div class="card text-center">
-            <h2 class="subtitle">{{ word.word }}</h2>
-            <div class="button-choices">
-              <AppButton @click="answer(FEMININE)"><AppArrowLeft/> Feminine</AppButton>
-              <span>or</span>
-              <AppButton @click="answer(MASCULINE)">Masculine <AppArrowRight/></AppButton>
-            </div>
-            <div v-if="answered">
-              <hr/>
-              <div v-if="correctAnswer">That's right!<br/> <span class="the-word">{{ previousWord.word }}</span> is {{ previousWord.gender }}!</div>
-              <div v-else>
-                <p>I'm sorry. <span class="the-word">{{ previousWord.word }}</span> is {{ previousWord.gender }}</p>
-                <p>{{ tip }}</p>
+          <div class="col-md-6 p-0">
+              <div class="card text-center">
+                <h2 class="subtitle">{{ word.word }}</h2>
+                <div class="button-choices">
+                  <AppButton @click="answer(FEMININE)"><AppArrowLeft/> Feminine</AppButton>
+                  <span>or</span>
+                  <AppButton @click="answer(MASCULINE)">Masculine <AppArrowRight/></AppButton>
+                </div>
+                <div v-if="answered">
+                  <hr/>
+                  <div v-if="correctAnswer">That's right!<br/> <span class="the-word">{{ previousWord.word }}</span> is {{ previousWord.gender }}!</div>
+                  <div v-else>
+                    <p>I'm sorry. <span class="the-word">{{ previousWord.word }}</span> is {{ previousWord.gender }}</p>
+                    <p>{{ tip }}</p>
+                  </div>
+                </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </AppClientOnly>
 </template>
 
 <style scoped>

@@ -27,7 +27,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700" crossorigin="anonymous">
+
+    <!--preload-links-->
   </head>
   <body>
     <!-- Google tag (gtag.js) -->
@@ -39,12 +41,7 @@
 
       gtag('config', 'G-41C4FMPZX4');
     </script>
-    <div id="app">
-      <img src="/logo.svg" class="loader-image" />
-      <p>
-        Loading...
-      </p>
-    </div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="app"><!--app-html--></div>
+    <script type="module" src="/src/entry-client.ts"></script>
   </body>
 </html>
