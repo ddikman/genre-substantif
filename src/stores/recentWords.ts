@@ -18,9 +18,7 @@ const recentWords = ref<Word[]>([
   new Word('supermarché', MASCULINE),
 ])
 
-const inClient = typeof window !== 'undefined'
-
-if (inClient) {
+if (!import.meta.env.SSR) {
   const storedLocally = localStorage.getItem(RECENT_KEY)
   if (storedLocally) {
     recentWords.value = JSON.parse(storedLocally).map(Word.fromJSON)
@@ -28,7 +26,7 @@ if (inClient) {
 }
 
 const getMostRecentWord = (fallback: Word) => {
-  if (!inClient) {
+  if (import.meta.env.SSR) {
     return fallback
   }
   const lastLookup = localStorage.getItem(LAST_LOOKUP_KEY)
