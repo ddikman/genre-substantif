@@ -60,6 +60,8 @@ However, this means that when we run `npm run dev`, there will be no server-side
 
 This warning, in dev mode, can be safely ignored. But do make sure you build and try to serve the app using the pre-generated index.html as well to make sure there are no hydration issues happening on the production build.
 
+This dev hydration issue could also be resolved by serving a rendered `index.html` when working locally according to [Vite's instructions](https://vitejs.dev/guide/ssr.html#setting-up-the-dev-server) but I deemed this to be overkill for this project and that it is better to live with the warning.
+
 ## Roadmap
 
 - Refactor into separate pages
