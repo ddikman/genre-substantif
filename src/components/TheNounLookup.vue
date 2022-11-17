@@ -8,6 +8,7 @@ import { addRecentWord, getMostRecentWord } from '../stores/recentWords';
 import { lookupWord } from '../services/lookupWord';
 import { dictionary } from '../services/dictionary';
 import TheNotFoundNotice from './TheNotFoundNotice.vue';
+import AppClientOnly from './AppClientOnly.vue';
 
 const searchTerm = ref('')
 const foundWord = ref<Word>()
@@ -54,14 +55,16 @@ onMounted(loadPreviousLookup)
         </div>
         <div class="col-md-4 p-0">
           <div class="card text-center">
-            <input type="text" id="word" v-model="searchTerm" class="mb-2" />
-            <div v-if="foundWord">
-              <p class="mb-2">means <span class="english">{{ english }}</span> and is</p>
-              <div class="accent subtitle gender" v-bind:class="foundWord.gender">{{ foundWord.gender }}</div>
-            </div>
-            <div v-else>
-              <TheNotFoundNotice :word="searchTerm" />
-            </div>
+            <AppClientOnly>
+              <input type="text" id="word" v-model="searchTerm" class="mb-2" />
+              <div v-if="foundWord">
+                <p class="mb-2">means <span class="english">{{ english }}</span> and is</p>
+                <div class="accent subtitle gender" v-bind:class="foundWord.gender">{{ foundWord.gender }}</div>
+              </div>
+              <div v-else>
+                <TheNotFoundNotice :word="searchTerm" />
+              </div>
+            </AppClientOnly>
           </div>
         </div>
       </div>
