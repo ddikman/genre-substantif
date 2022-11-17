@@ -48,6 +48,18 @@ npm run build
 
 And then deploy the `dist/` folder. Be mindful that the build generates files assuming deployment to the root folder of a domain so if you want to deploy to a subfolder, you will need to change the [public-base-path](https://vitejs.dev/guide/build.html#public-base-path).
 
+## Server Side Generation (SSG)
+
+To make sure the page loads quickly and renders nicely, I use SSG to pre-render the index page before serving to clients. This is similar to Server Side Rendering (SSR) but only happens build-time as opposed to rendering the page each time the client requests it.
+
+As we have no dynamic data on the page, we don't need to render it every time.
+
+However, this means that when we run `npm run dev`, there will be no server-side rendered version of the vue code, leading to a warning.
+
+![SSR Warning](./ssr-warning.png)
+
+This warning, in dev mode, can be safely ignored. But do make sure you build and try to serve the app using the pre-generated index.html as well to make sure there are no hydration issues happening on the production build.
+
 ## Roadmap
 
 - Refactor into separate pages
