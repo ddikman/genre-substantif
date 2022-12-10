@@ -1,7 +1,7 @@
 <template>
   <div class="container header mt-2 mb-4">
     <div class="header-contents">
-      <img src="/logo.svg" />
+      <img src="/logo.svg" alt="le genre des substantifs logo" />
       <ul>
         <li><a href="#find-gender">Find gender</a></li>
         <li><a href="#other-resources">Resources</a></li>
