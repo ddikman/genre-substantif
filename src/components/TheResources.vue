@@ -19,3 +19,11 @@
       </div>
   </div>
 </template>
+
+<style scoped>
+
+ul li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+</style>
