@@ -244,7 +244,7 @@ input[type="text"]:focus {
 
 /** mobile **/
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .hide-mobile {
     display: none;
   }

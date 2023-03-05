@@ -124,7 +124,7 @@ onKeyStroke('ArrowRight', () => answer(MASCULINE))
   gap: 0.5rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .button-choices span, .button-choices button svg {
     display: none
   }
