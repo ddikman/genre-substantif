@@ -65,6 +65,7 @@ This dev hydration issue could also be resolved by serving a rendered `index.htm
 ## Roadmap
 
 - Automatically add more entries to the dictionary using AI
+- Fix the multiple-match by showing gender per word, not for the first match
 
 ## Dictionary / Credits
 
