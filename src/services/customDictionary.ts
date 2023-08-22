@@ -22,5 +22,10 @@ export const customDictionary: DictionaryWord[] = [
       'fr': 'chaussée',
       'en': 'pavement',
       'gen': 'f'
+    },
+    {
+      'fr': 'jupiter',
+      'en': 'jupiter',
+      'gen': 'm'
     }
 ]
