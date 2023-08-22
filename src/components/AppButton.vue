@@ -30,6 +30,8 @@ button {
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+
+  transition: all 0.3s ease-in-out;
 }
 
 button:hover {
@@ -47,6 +49,7 @@ button:focus {
 <style>
 
 button svg {
+  transition: all 0.3s ease-in-out;
   fill: var(--color-primary);
 }
 
