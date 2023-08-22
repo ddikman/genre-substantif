@@ -9,8 +9,8 @@ import { lookupWord } from '../services/lookupWord';
 import { dictionary } from '../services/dictionary';
 import TheNotFoundNotice from './TheNotFoundNotice.vue';
 import AppClientOnly from './AppClientOnly.vue';
+import { searchTerm } from '../stores/searchTerm';
 
-const searchTerm = ref('')
 const foundWord = ref<Word>()
 
 function addMatch(match: Word) {
@@ -42,6 +42,8 @@ const english = computed(() => {
 })
 
 onMounted(loadPreviousLookup)
+
+const recentlyAdded = [ 'ridicule', 'portable' ]
 
 </script>
 
