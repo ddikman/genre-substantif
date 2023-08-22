@@ -11614,11 +11614,6 @@ export const dictionary: DictionaryWord[] = [
     "gen": "f"
   },
   {
-    "fr": "maison",
-    "en": "house",
-    "gen": "f"
-  },
-  {
     "fr": "logement",
     "en": "housing",
     "gen": "m"

@@ -64,7 +64,7 @@ This dev hydration issue could also be resolved by serving a rendered `index.htm
 
 ## Roadmap
 
-- Handling cases where multiple matches are found in dictionary (like `maison` for example)
+- Automatically add more entries to the dictionary using AI
 
 ## Dictionary / Credits
 

@@ -11,7 +11,7 @@ import TheNotFoundNotice from './TheNotFoundNotice.vue';
 import AppClientOnly from './AppClientOnly.vue';
 import { searchTerm } from '../stores/searchTerm';
 
-const foundWord = ref<Word>()
+const matches = ref<Word[]>([])
 
 function addMatch(match: Word) {
   addRecentWord(match)
@@ -19,24 +19,24 @@ function addMatch(match: Word) {
 
 const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
 const debounceLookup = useDebounceFn((value: string) => {
-  foundWord.value = lookupWord(value)
-  if (foundWord.value) {
+  matches.value = lookupWord(value)
+  if (matches.value.length === 1) {
     // correct search term to add accents or so to match the actual word
-    searchTerm.value = foundWord.value.french
-    addMatch(foundWord.value)
+    searchTerm.value = matches.value[0].french
+    addMatch(matches.value[0])
   }
 }, WAIT_MS_UNTIL_NEXT_LOOKUP)
 
 watch(searchTerm, () => debounceLookup(searchTerm.value))
 
 function loadPreviousLookup() {
-  foundWord.value = getMostRecentWord(new Word('femme', FEMININE))
-  searchTerm.value = foundWord.value?.french || 'femme'
+  matches.value = [ getMostRecentWord(new Word('femme', FEMININE)) ]
+  searchTerm.value = matches.value[0]?.french || 'femme'
 }
 
 const english = computed(() => {
-  if (foundWord.value) {
-    return dictionary.find((entry) => entry.fr === foundWord.value?.french)?.en
+  if (matches.value.length > 0) {
+    return dictionary.filter((entry) => entry.fr === matches.value[0]?.french).map((entry) => entry.en).join(', ')
   }
   return ''
 })
@@ -59,9 +59,9 @@ const recentlyAdded = [ 'ridicule', 'portable' ]
           <div class="card text-center">
             <AppClientOnly>
               <input type="text" id="word" v-model="searchTerm" class="mb-2" />
-              <div v-if="foundWord">
-                <p class="mb-2">means <span class="english">{{ english }}</span> and is</p>
-                <div class="accent subtitle gender" v-bind:class="foundWord.gender">{{ foundWord.gender }}</div>
+              <div v-if="matches.length > 0">
+                <p class="mb-2">means <span class="english">{{ english }}</span> (EN) and is</p>
+                <div class="accent subtitle gender" v-bind:class="matches[0].gender">{{ matches[0].gender }}</div>
               </div>
               <div v-else>
                 <TheNotFoundNotice :word="searchTerm" />
