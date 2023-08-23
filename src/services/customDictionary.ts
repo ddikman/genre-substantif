@@ -27,5 +27,20 @@ export const customDictionary: DictionaryWord[] = [
       'fr': 'jupiter',
       'en': 'jupiter',
       'gen': 'm'
-    }
+    },
+    {
+      'fr': 'torche',
+      'en': 'torch',
+      'gen': 'f'
+    },
+    {
+      'fr': 'ami',
+      'en': 'male friend',
+      'gen': 'm'
+    },
+    {
+      'fr': 'amie',
+      'en': 'female friend',
+      'gen': 'f'
+    },
 ]
