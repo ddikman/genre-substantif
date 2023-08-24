@@ -43,4 +43,9 @@ export const customDictionary: DictionaryWord[] = [
       'en': 'female friend',
       'gen': 'f'
     },
+    {
+      'en': 'sports',
+      'fr': 'sports',
+      'gen': 'm'
+    }
 ]
