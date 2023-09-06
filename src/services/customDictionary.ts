@@ -62,5 +62,15 @@ export const customDictionary: DictionaryWord[] = [
     'en': 'toothpaste',
     'fr': 'dentifrice',
     'gen': 'm'
+  },
+  {
+    'en': 'Italian',
+    'fr': 'italien',
+    'gen': 'm'
+  },
+  {
+    'en': 'Italian (female)',
+    'fr': 'italienne',
+    'gen': 'f'
   }
 ]
