@@ -72,5 +72,10 @@ export const customDictionary: DictionaryWord[] = [
     'en': 'Italian (female)',
     'fr': 'italienne',
     'gen': 'f'
+  },
+  {
+    'en': 'high school',
+    'fr': 'lycée',
+    'gen': 'm'
   }
 ]
