@@ -77,5 +77,15 @@ export const customDictionary: DictionaryWord[] = [
     'en': 'high school',
     'fr': 'lycée',
     'gen': 'm'
+  },
+  {
+    'en': 'doctor',
+    'fr': 'médecin',
+    'gen': 'm'
+  },
+  {
+    'en': 'good',
+    'fr': 'bon',
+    'gen': 'm'
   }
 ]
