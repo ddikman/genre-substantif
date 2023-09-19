@@ -107,5 +107,20 @@ export const customDictionary: DictionaryWord[] = [
     'en': 'cream puffs',
     'fr': 'choux',
     'gen': 'm'
+  },
+  {
+    'en': 'darling',
+    'fr': 'chérie',
+    'gen': 'f'
+  },
+  {
+    'en': 'sweetheart',
+    'fr': 'chérie',
+    'gen': 'f'
+  },
+  {
+    'en': 'lavender',
+    'fr': 'lavande',
+    'gen': 'f'
   }
 ]
