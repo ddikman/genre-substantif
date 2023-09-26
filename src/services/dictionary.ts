@@ -13829,11 +13829,6 @@ export const dictionary: DictionaryWord[] = [
     "gen": "f"
   },
   {
-    "fr": "licence",
-    "en": "license",
-    "gen": "f"
-  },
-  {
     "fr": "raclée",
     "en": "licking",
     "gen": "f"

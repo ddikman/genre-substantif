@@ -5,7 +5,8 @@ import { DictionaryWord } from '../models/dictionaryWord';
 const genders: any = {
   'm': MASCULINE,
   'f': FEMININE,
-  'n': 'unisex'
+  'n': 'unisex',
+  'm/f': 'unisex'
 }
 
 export function toNormalForm(str: string): string {

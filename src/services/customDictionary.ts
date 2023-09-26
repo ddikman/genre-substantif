@@ -132,5 +132,20 @@ export const customDictionary: DictionaryWord[] = [
     'en': 'mayonnaise',
     'fr': 'mayonnaise',
     'gen': 'f'
-  }
+  },
+  {
+    'en': 'chalk',
+    'fr': 'craie',
+    'gen': 'f'
+  },
+  {
+    'en': 'student',
+    'fr': 'élève',
+    'gen': 'm/f'
+  },
+  {
+      'en': 'pupil',
+      'fr': 'élève',
+      'gen': 'm/f'
+  },
 ]
