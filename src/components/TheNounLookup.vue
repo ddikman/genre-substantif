@@ -17,8 +17,7 @@ function addMatch(match: Word) {
   addRecentWord(match)
 }
 
-const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
-const debounceLookup = useDebounceFn((value: string) => {
+const lookupAndReplace = (value: string) => {
   matches.value = lookupWord(value)
   // if all matches are the same, replace the search term with the actual word
   const uniqueFrenchMatches = new Set(matches.value.map(w => w.french))
@@ -27,7 +26,10 @@ const debounceLookup = useDebounceFn((value: string) => {
     searchTerm.value = matches.value[0].french
     addMatch(matches.value[0])
   }
-}, WAIT_MS_UNTIL_NEXT_LOOKUP)
+}
+
+const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
+const debounceLookup = useDebounceFn(lookupAndReplace, WAIT_MS_UNTIL_NEXT_LOOKUP)
 
 watch(searchTerm, () => debounceLookup(searchTerm.value))
 
