@@ -7,7 +7,7 @@ describe('dictionary', () => {
     for (let word of dictionary) {
       expect(word.fr).to.not.toBeNull()
       expect(word.en).to.not.toBeNull()
-      expect(['m', 'f', 'n']).toContain(word.gen)
+      expect(['m', 'f', 'n', 'm/f']).toContain(word.gen)
     }
   })
 })
