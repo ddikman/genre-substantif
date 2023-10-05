@@ -144,8 +144,38 @@ export const customDictionary: DictionaryWord[] = [
     'gen': 'm/f'
   },
   {
-      'en': 'pupil',
-      'fr': 'élève',
-      'gen': 'm/f'
+    'en': 'pupil',
+    'fr': 'élève',
+    'gen': 'm/f'
   },
+  {
+    'en': 'boulevard',
+    'fr': 'boulevard',
+    'gen': 'm'
+  },
+  {
+    'en': 'dear',
+    'fr': 'cher',
+    'gen': 'm'
+  },
+  {
+    'en': 'dear',
+    'fr': 'chère',
+    'gen': 'f'
+  },
+  {
+    'en': 'expensive',
+    'fr': 'cher',
+    'gen': 'm'
+  },
+  {
+    'en': 'expensive',
+    'fr': 'chère',
+    'gen': 'f'
+  },
+  {
+    'en': 'pen',
+    'fr': 'stylo',
+    'gen': 'm'
+  }
 ]
