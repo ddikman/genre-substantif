@@ -10,8 +10,10 @@ import { dictionary } from '../services/dictionary';
 import TheNotFoundNotice from './TheNotFoundNotice.vue';
 import AppClientOnly from './AppClientOnly.vue';
 import { searchTerm } from '../stores/searchTerm';
+import { getSingularForm } from '../services/getSingularForm';
 
 const matches = ref<Word[]>([])
+const singularForm = ref<string | null>()
 
 function addMatch(match: Word) {
   addRecentWord(match)
@@ -25,6 +27,16 @@ const lookupAndReplace = (value: string) => {
     // correct search term to add accents or so to match the actual word
     searchTerm.value = matches.value[0].french
     addMatch(matches.value[0])
+  } else if (uniqueFrenchMatches.size === 0) {
+    singularForm.value = getSingularForm(value)
+    if (singularForm.value) {
+      const singularMatches = lookupWord(singularForm.value)
+      if (singularMatches.length > 0) {
+        matches.value = singularMatches
+      } else {
+        singularForm.value = null
+      }
+    }
   }
 }
 
@@ -64,7 +76,8 @@ const recentlyAdded = [ 'ridicule', 'portable' ]
             <AppClientOnly>
               <input type="text" id="word" v-model="searchTerm" class="mb-2" />
               <div v-if="matches.length > 0">
-                <p class="mb-2">means <span class="english">{{ english }}</span> (EN) and is</p>
+                <p v-if="singularForm" class="mb-0">plural of <span class="accent-text">{{singularForm}}</span> which</p>
+                <p class="mb-2">means <span class="accent-text">{{ english }}</span> (EN) and is</p>
                 <div class="accent subtitle gender" v-bind:class="matches[0].gender">{{ matches[0].gender }}</div>
               </div>
               <div v-else>
@@ -110,7 +123,7 @@ const recentlyAdded = [ 'ridicule', 'portable' ]
   background-position-y: center;
 }
 
-.english {
+.accent-text {
   font-style: italic;
   color: var(--color-accent);
 }
