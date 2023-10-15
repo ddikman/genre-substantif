@@ -177,5 +177,75 @@ export const customDictionary: DictionaryWord[] = [
     'en': 'pen',
     'fr': 'stylo',
     'gen': 'm'
+  },
+  {
+    'en': 'pseudo',
+    'fr': 'pseudo',
+    'gen': 'm'
+  },
+  {
+    'en': 'fake',
+    'fr': 'pseudo',
+    'gen': 'm'
+  },
+  {
+    'en': 'buddy',
+    'fr': 'pote',
+    'gen': 'm'
+  },
+  {
+    'en': 'mate',
+    'fr': 'pote',
+    'gen': 'm'
+  },
+  {
+    'en': 'jam',
+    'fr': 'confiture',
+    'gen': 'f'
+  },
+  {
+    'en': 'professor',
+    'fr': 'professeur',
+    'gen': 'm'
+  },
+  {
+    'en': 'teacher',
+    'fr': 'professeur',
+    'gen': 'm'
+  },
+  {
+    'en': 'dog',
+    'fr': 'chien',
+    'gen': 'm'
+  },
+  {
+    'en': 'tablet',
+    'fr': 'tablette',
+    'gen': 'f'
+  },
+  {
+    'en': 'slab',
+    'fr': 'tablette',
+    'gen': 'f'
+  },
+  {
+    'en': 'bar (e.g., of chocolate)',
+    'fr': 'tablette',
+    'gen': 'f'
+  },
+  {
+    'en': 'rabbit',
+    'fr': 'lapin',
+    'gen': 'm'
+  },
+  {
+    'en': 'customer',
+    'fr': 'client',
+    'gen': 'm'
+  },
+  {
+    'en': 'client',
+    'fr': 'client',
+    'gen': 'm'
   }
 ]
