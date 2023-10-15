@@ -23,6 +23,10 @@
   --color-accent: #C45D41;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
