@@ -52,10 +52,14 @@ describe('toNormalForm', () => {
     });
 
     it('should return a string without diacritics when given a string with diacritics', () => {
-      const input = "éàô";
-      const expectedOutput = "eao";
+      const input = "éàôí";
+      const expectedOutput = "eaoi";
       const actualOutput = toNormalForm(input);
       expect(actualOutput).toEqual(expectedOutput);
+    });
+
+    it('should return an empty string when the input is an empty string', () => {
+      expect(toNormalForm('')).toBe('');
     });
 
     it('should return an empty string when the input is an empty string', () => {

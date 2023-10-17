@@ -247,5 +247,25 @@ export const customDictionary: DictionaryWord[] = [
     'en': 'client',
     'fr': 'client',
     'gen': 'm'
+  },
+  {
+    'en': 'cafeteria',
+    'fr': 'cafétéria',
+    'gen': 'f'
+  },
+  {
+    'en': 'baker',
+    'fr': 'boulanger',
+    'gen': 'm'
+  },
+  {
+    'en': 'downtown',
+    'fr': 'centre-ville',
+    'gen': 'm'
+  },
+  {
+    'en': 'city center',
+    'fr': 'centre-ville',
+    'gen': 'm'
   }
 ]
