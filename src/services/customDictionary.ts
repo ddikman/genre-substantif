@@ -267,5 +267,35 @@ export const customDictionary: DictionaryWord[] = [
     'en': 'city center',
     'fr': 'centre-ville',
     'gen': 'm'
+  },
+  {
+    'en': 'holiday home/vacation rental',
+    'fr': 'gîte',
+    'gen': 'm'
+  },
+  {
+      'en': 'dining room',
+      'fr': 'salle à manger',
+      'gen': 'f'
+  },
+  {
+      'en': 'aerial/airborne',
+      'fr': 'aérienne',
+      'gen': 'f'
+  },
+  {
+      'en': 'zipper',
+      'fr': 'fermeture éclair',
+      'gen': 'f'
+  },
+  {
+      'en': 'mint',
+      'fr': 'menthe',
+      'gen': 'f'
+  },
+  {
+      'en': 'shoelace',
+      'fr': 'lacet',
+      'gen': 'm'
   }
 ]
