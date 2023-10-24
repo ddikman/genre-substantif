@@ -297,5 +297,18 @@ export const customDictionary: DictionaryWord[] = [
       'en': 'shoelace',
       'fr': 'lacet',
       'gen': 'm'
-  }
+  },
+  {'fr': 'pain', 'en': 'bread', 'gen': 'm'},
+  {'fr': 'sandwich au fromage fondu', 'en': 'grilled cheese', 'gen': 'm'},
+  {'fr': 'saucisson', 'en': 'salami', 'gen': 'm'},
+  {'fr': 'marron', 'en': 'chestnut', 'gen': 'm'},
+  {'fr': 'copain', 'en': 'friend', 'gen': 'm'},
+  {'fr': 'colocataire', 'en': 'roommate', 'gen': 'm/f'},
+  {'fr': 'saumon', 'en': 'salmon', 'gen': 'm'},
+  {'fr': 'voisin', 'en': 'neighbor', 'gen': 'm'},
+  {'fr': 'cappuccino', 'en': 'cappuccino', 'gen': 'm'},
+  {'fr': 'épicerie', 'en': 'grocery store', 'gen': 'f'},
+  {'fr': 'chandail', 'en': 'sweater', 'gen': 'm'},
+  {'fr': 'bouteille d\'eau', 'en': 'water bottle', 'gen': 'f'},
+  {'fr': 'thriller', 'en': 'thriller', 'gen': 'm'}
 ]
