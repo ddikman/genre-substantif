@@ -21,6 +21,8 @@ function addMatch(match: Word) {
 
 const lookupAndReplace = (value: string) => {
   matches.value = lookupWord(value)
+  singularForm.value = null;
+
   // if all matches are the same, replace the search term with the actual word
   const uniqueFrenchMatches = new Set(matches.value.map(w => w.french))
   if (uniqueFrenchMatches.size === 1) {
@@ -58,8 +60,6 @@ const english = computed(() => {
 })
 
 onMounted(loadPreviousLookup)
-
-const recentlyAdded = [ 'ridicule', 'portable' ]
 
 </script>
 
