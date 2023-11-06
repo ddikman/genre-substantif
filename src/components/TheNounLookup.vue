@@ -11,6 +11,7 @@ import TheNotFoundNotice from './TheNotFoundNotice.vue';
 import AppClientOnly from './AppClientOnly.vue';
 import { searchTerm } from '../stores/searchTerm';
 import { getSingularForm } from '../services/getSingularForm';
+import { logEvent } from '../services/logEvent';
 
 const matches = ref<Word[]>([])
 const singularForm = ref<string | null>()
@@ -22,6 +23,7 @@ function addMatch(match: Word) {
 const lookupAndReplace = (value: string) => {
   matches.value = lookupWord(value)
   singularForm.value = null;
+  logEvent('lookupWord', { word: value })
 
   // if all matches are the same, replace the search term with the actual word
   const uniqueFrenchMatches = new Set(matches.value.map(w => w.french))

@@ -1,6 +1,5 @@
 import { dictionary } from './dictionary'
 import { Word, FEMININE, MASCULINE } from '../models/word';
-import { DictionaryWord } from '../models/dictionaryWord';
 
 const genders: any = {
   'm': MASCULINE,
