@@ -7,6 +7,7 @@ import AppArrowLeft from './AppArrowLeft.vue';
 import AppArrowRight from './AppArrowRight.vue';
 import AppButton from './AppButton.vue';
 import AppClientOnly from './AppClientOnly.vue';
+import { logEvent } from '../services/logEvent';
 
 interface WordExample {
   word: string;
@@ -63,10 +64,10 @@ const tip = ref('');
 const answer = (gender: string) => {
   answered.value = true;
   correctAnswer.value = gender == word.value.gender;
-  tip.value = word.value.tip
-  Math.random()
-  previousWord.value = word.value
-  word.value = randomWord()
+  tip.value = word.value.tip;
+  previousWord.value = word.value;
+  word.value = randomWord();
+  logEvent('practiceAnswer', { result: correctAnswer.value, word: previousWord.value.word })
 }
 
 onKeyStroke('ArrowLeft', () => answer(FEMININE))
