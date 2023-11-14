@@ -29,3 +29,4 @@ coverage
 
 # Environment, excluded because vercel dev doesn't support env.local
 .env
+.env*.local
