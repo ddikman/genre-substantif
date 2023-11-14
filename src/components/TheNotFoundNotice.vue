@@ -32,8 +32,6 @@ async function request() {
         if (!response.ok) {
             throw new Error(`Network response: ${response.status} ${response.statusText}`)
         }
-        // wait a bit more just to make sure the user see's something happens
-        await wait(500)
     } catch (err) {
         console.error(err)
         error.value = 'Something went wrong, please try again later.'
