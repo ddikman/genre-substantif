@@ -7,7 +7,7 @@ const db = getFirestore(app);
 
 async function saveRequest(word: string) {
   await setDoc(doc(db, 'genre-substantif/data/word-requests/' + word), {
-    word: word.toLowerCase(),
+    word: word,
     timestamp: Date.now()
   })
 }
@@ -21,7 +21,7 @@ async function sendRequest(word: string) {
 }
 
 export default async function handler(request: any, response: any) {
-    const { word: word } = request.query;
+    const word = request.query.word.toLowerCase()
     await sendRequest(word)
     await saveRequest(word)
     const message = `OK. Requesting '${word}' to be added.`
