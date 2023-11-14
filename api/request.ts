@@ -7,7 +7,7 @@ const db = getFirestore(app);
 
 async function saveRequest(word: string) {
   await setDoc(doc(db, 'genre-substantif/data/word-requests/' + word), {
-    word: word,
+    word: word.toLowerCase(),
     timestamp: Date.now()
   })
 }
