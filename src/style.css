@@ -5,8 +5,15 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #fff;
+
+  /** colors **/
+  --color-text: #262626;
+  --color-primary: rgb(40,127,160);
+  --color-primary-30: rgba(40,127,160, 0.3);
+  --color-primary-3: rgba(40,127,160, 0.03);
+  --color-accent: #C45D41;
+  --color-background: #FFFFFF;
+  --color-shadow: #CCE0E7;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,12 +22,27 @@
   -webkit-text-size-adjust: 100%;
 
   --page-width: 920px;
+}
 
-  /** colors **/
-  --color-dark: #262626;
-  --color-primary: #287FA0;
-  --color-primary-almost-transparent: rgba(40, 127, 160, 0.3);
-  --color-accent: #C45D41;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #292929;
+    --color-text: #FFFFFF;
+    --color-primary: rgb(60,185,233);
+    --color-primary-30: rgba(60,185,233, 0.3);
+    --color-primary-3: rgba(60,185,233, 0.03);
+    --color-accent: #DB7F67;
+    --color-shadow: #0F0F0F;
+  }
+
+  img {
+    filter: invert(1);
+  }
+}
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 html {
@@ -29,12 +51,12 @@ html {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--color-primary);
   text-decoration: inherit;
   transition: all 0.2s ease-in-out;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-primary);
 }
 
 h1 {
@@ -63,18 +85,8 @@ body {
   display: block;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-}
-
 button {
-  background-color: #f9f9f9;
+  background-color: var(--color-background);
 }
 
 /** header **/
@@ -144,7 +156,7 @@ section .contents {
 }
 
 .contrast-background {
-  background: rgba(40, 127, 160, 0.03);
+  background: var(--color-primary-3);
 }
 
 .container {
@@ -169,6 +181,7 @@ footer hr {
   width: 100%;
   margin-top: 2em;
   margin-bottom: 2em;
+  border-top: 1px solid var(--color-primary-3);
 }
 
 /** input field **/
@@ -183,8 +196,8 @@ input[type="text"] {
   background-position-x: 25px;
   background-position-y: center;
   outline: none;
-  background-color: #FFFFFF;
-  color: var(--color-dark);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 input[type="text"]:focus {
@@ -200,11 +213,11 @@ input[type="text"]:focus {
 
 .card {
   padding: 32px;
-  background: #FFFFFF;
+  background: var(--color-background);
   border-radius: 40px;
 
   /** vague shadow **/
-  box-shadow: 0px 0px 73px 13px #CCE0E7;
+  box-shadow: 0px 0px 73px 13px var(--color-shadow);
 }
 
 /** typography **/
@@ -240,7 +253,7 @@ input[type="text"]:focus {
 
 .tag {
   color: var(--color-primary);
-  border: 1px solid var(--color-primary-almost-transparent);
+  border: 1px solid var(--color-primary-30);
   border-radius: 4px;
   padding: 4px 12px;
   display: flex;
