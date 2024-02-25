@@ -17,7 +17,7 @@ You can also check out the [Figma project](https://www.figma.com/file/8teTdo1t85
 The app is built on top of [ViteJs](https://vitejs.dev/) for quick local build and hot reload.
 
 ```shell
-npm run dev
+yarn run dev
 ```
 
 Look at [App.vue](src/App.vue) as a starting point for the app.
@@ -26,7 +26,7 @@ Look at [App.vue](src/App.vue) as a starting point for the app.
 
 The application also has some backend functionality which is hosted with the [vercel serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions). These can be foud in the `./api` folder.
 
-If you want to run with vercel and using the vercel environment config, run `npm run vercel` and it will pull down what is needed and run both frontend and apis.
+If you want to run with vercel and using the vercel environment config, run `yarn vercel` and it will pull down what is needed and run both frontend and apis.
 
 ```
 curl -X POST http://localhost:3000/api/request?word=bob
@@ -43,7 +43,7 @@ On merging to master, the app is built and released on [Vercel](https://vercel.c
 If you want to deploy somewhere else you can run:
 
 ```shell
-npm run build
+yarn build
 ```
 
 And then deploy the `dist/` folder. Be mindful that the build generates files assuming deployment to the root folder of a domain so if you want to deploy to a subfolder, you will need to change the [public-base-path](https://vitejs.dev/guide/build.html#public-base-path).
@@ -54,7 +54,7 @@ To make sure the page loads quickly and renders nicely, I use SSG to pre-render 
 
 As we have no dynamic data on the page, we don't need to render it every time.
 
-However, this means that when we run `npm run dev`, there will be no server-side rendered version of the vue code, leading to a warning.
+However, this means that when we run `yarn dev`, there will be no server-side rendered version of the vue code, leading to a warning.
 
 ![SSR Warning](./ssr-warning.png)
 
