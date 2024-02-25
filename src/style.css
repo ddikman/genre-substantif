@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #fff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -71,9 +71,10 @@ body {
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+button {
+  background-color: #f9f9f9;
 }
 
 /** header **/
@@ -182,7 +183,7 @@ input[type="text"] {
   background-position-x: 25px;
   background-position-y: center;
   outline: none;
-  background-color: none;
+  background-color: #FFFFFF;
   color: var(--color-dark);
 }
 
