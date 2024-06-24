@@ -82,6 +82,9 @@ onMounted(loadPreviousLookup)
                 <p class="mb-2">means <span class="accent-text">{{ english }}</span> (EN) and is</p>
                 <div class="accent subtitle gender" v-bind:class="matches[0].gender">{{ matches[0].gender }}</div>
               </div>
+              <div v-if="searchTerm.trim().length === 0">
+                <p>Enter a french noun.</p>
+              </div>
               <div v-else>
                 <TheNotFoundNotice :word="searchTerm" />
               </div>
