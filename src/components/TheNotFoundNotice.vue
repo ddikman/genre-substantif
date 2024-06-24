@@ -20,10 +20,6 @@ watch(() => props.word, () => {
     error.value = null
 })
 
-function wait(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 async function request() {
     loading.value = true
     try {
