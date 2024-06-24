@@ -17,7 +17,7 @@ interface WordExample {
 
 const FEMININE_ENDINGS = 'Feminine words typically end in -e or -ion, except -age, -ege, -é or -isme'
 const MASCULINE_ENDINGS = 'Masculine words are typically not ending in -e or -ion'
-const MASCULINE_ENDING_ACCENT = 'Words ending with -é are typically masculine as it is an exceptio to the rule of feminine words'
+const MASCULINE_ENDING_ACCENT = 'Words ending with -é are typically masculine as it is an exception to the rule of feminine words'
 const EXCEPTION_E_ENDING = 'This is an exception, despite ending in -e it is masculine'
 
 let words: WordExample[] = [
