@@ -2,7 +2,7 @@
   <div class="container section-top-spacer">
     <div class="row">
       <div class="col-md-6 p-0 hide-mobile">
-        <img src="/eiffel.png" style="max-width: 100%;" />
+        <img src="/eiffel.webp" class="px-4 mw-100"/>
       </div>
       <div class="col-md-6 p-0">
         <h2 id="other-resources">Other resources</h2>
