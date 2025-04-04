@@ -8034,11 +8034,6 @@ export const dictionary: DictionaryWord[] = [
     "gen": "m"
   },
   {
-    "fr": "maison",
-    "en": "editorial",
-    "gen": "m"
-  },
-  {
     "fr": "redaction",
     "en": "editorial",
     "gen": "f"
