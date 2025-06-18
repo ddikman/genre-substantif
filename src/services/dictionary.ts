@@ -3981,7 +3981,7 @@ export const dictionary: DictionaryWord[] = [
   {
     "fr": "chat",
     "en": "cat",
-    "gen": "f"
+    "gen": "m"
   },
   {
     "fr": "nage",
