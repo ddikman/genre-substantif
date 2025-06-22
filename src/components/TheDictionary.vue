@@ -8,7 +8,7 @@ import AppButton from './AppButton.vue'
 const route = useRoute()
 const router = useRouter()
 
-const pageSize = 100
+const pageSize = 10
 const currentPage = ref(1)
 const searchQuery = ref('')
 
@@ -76,11 +76,15 @@ const prevPage = () => {
         type="text" 
         v-model="searchQuery" 
         placeholder="Search in French or English..."
-        class="search-input"
       />
     </div>
 
     <div class="words-container">
+      <div class="word-item header">
+        <span>French</span>
+        <span>Gender</span>
+        <span>English</span>
+      </div>
       <div v-for="word in paginatedWords" :key="word.fr" class="word-item">
         <span class="french">{{ word.fr }}</span>
         <span class="gender">{{ word.gen === 'm' ? 'masculine' : 'feminine' }}</span>
@@ -100,6 +104,7 @@ const prevPage = () => {
       </AppButton>
       <span class="page-info">
         Page {{ currentPage }} of {{ totalPages }}
+        <span class="total-count">({{ filteredDictionary.length }} words total)</span>
       </span>
       <AppButton 
         @click="nextPage" 
@@ -122,19 +127,6 @@ const prevPage = () => {
   margin-bottom: 20px;
 }
 
-.search-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
-  outline: none;
-}
-
-.search-input:focus {
-  border-color: var(--color-accent);
-}
-
 .words-container {
   margin-bottom: 20px;
   min-height: 400px;
@@ -147,6 +139,17 @@ const prevPage = () => {
   padding: 10px;
   border-bottom: 1px solid var(--color-border);
   align-items: center;
+}
+
+.word-item.header {
+  font-weight: bold;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.word-item.header span:last-child {
+  text-align: right;
 }
 
 .french {
@@ -172,6 +175,13 @@ const prevPage = () => {
 
 .page-info {
   color: var(--color-text-light);
+  text-align: center;
+}
+
+.total-count {
+  display: block;
+  font-size: 0.9em;
+  margin-top: 4px;
 }
 
 .no-results {

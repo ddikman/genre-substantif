@@ -11,7 +11,6 @@ const route = useRoute()
         <img src="/logo.svg" alt="le genre des substantifs logo" />
       </router-link>
       <ul>
-        <li><router-link to="/#find-gender">Find gender</router-link></li>
         <li><router-link to="/dictionary">Dictionary</router-link></li>
         <li><router-link to="/#other-resources">Resources</router-link></li>
         <li><router-link to="/#about">About</router-link></li>
