@@ -1,7 +1,11 @@
 import { createSSRApp } from 'vue'
 import './style.css'
-import Index from './pages/Index.vue'
+import App from './App.vue'
+import { createAppRouter } from './router'
 
 export function createApp() {
-  return createSSRApp(Index)
+  const app = createSSRApp(App)
+  const router = createAppRouter()
+  app.use(router)
+  return app
 }

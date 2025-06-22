@@ -19,7 +19,8 @@
     "@vueuse/core": "^10.3.0",
     "firebase": "^10.6.0",
     "ts-node": "^10.9.1",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.3.3",
