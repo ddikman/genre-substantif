@@ -38,13 +38,17 @@ export function groupWordsByGender(words: Word[]): GenderGroup[] {
     return []
   }
 
-  // Group words by gender
+  // Group words by gender, removing duplicates within each gender
   const genderMap = new Map<string, Word[]>()
   words.forEach(word => {
     if (!genderMap.has(word.gender)) {
       genderMap.set(word.gender, [])
     }
-    genderMap.get(word.gender)!.push(word)
+    // Only add if this exact word isn't already in the gender group
+    const existingWords = genderMap.get(word.gender)!
+    if (!existingWords.some(existing => existing.french === word.french)) {
+      existingWords.push(word)
+    }
   })
 
   // If all words have the same gender, return as single primary group

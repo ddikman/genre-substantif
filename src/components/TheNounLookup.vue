@@ -166,23 +166,33 @@ onMounted(loadPreviousLookup)
 
 .word-list {
   font-size: 14px;
-  margin-top: 4px;
+  margin-top: 8px;
   color: #666;
+  font-style: italic;
 }
 
 .word-item {
   font-weight: 500;
+  color: #444;
 }
 
 .secondary-gender-group {
-  margin-top: 8px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid var(--color-accent);
 }
 
 .secondary-header {
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 0;
   color: #555;
   font-weight: 400;
+}
+
+.primary-gender-group {
+  text-align: center;
 }
 
 </style>
