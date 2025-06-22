@@ -1,0 +1,10 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Core development rules for background agents
+
+
+- Always use `yarn`, such as `yarn run` or `yarn test`
+- When doing `yarn test` include `--watchAll=false` to allow the process to exit after run
