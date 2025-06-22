@@ -17,6 +17,9 @@
         <p>It’s all open source and you can fork this or contribute at our <a href="https://github.com/ddikman/genre-substantif" target="_blank">github page</a></p>
         <p>Anytime words are reported missing from the dictionary, I'm adding them in one by one.</p>
         <p>
+          <b>June 22, 2025</b><br/> I've added a dictionary of words as well as showing both genders of words that may have multiple genders.
+        </p>
+        <p>
           <b>October 15, 2023</b><br/> Good news! I've added support for lookups of plural nouns. It's not perfect but hopefully it should catch most cases.
         </p>
       </div>
