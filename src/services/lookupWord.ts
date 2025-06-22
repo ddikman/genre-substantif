@@ -26,3 +26,71 @@ export function lookupWord(value: string): Word[] {
   }
   return []
 }
+
+export interface GenderGroup {
+  gender: string;
+  words: Word[];
+  isPrimary: boolean;
+}
+
+export function groupWordsByGender(words: Word[]): GenderGroup[] {
+  if (words.length === 0) {
+    return []
+  }
+
+  // Group words by gender, removing duplicates within each gender
+  const genderMap = new Map<string, Word[]>()
+  words.forEach(word => {
+    if (!genderMap.has(word.gender)) {
+      genderMap.set(word.gender, [])
+    }
+    // Only add if this exact word isn't already in the gender group
+    const existingWords = genderMap.get(word.gender)!
+    if (!existingWords.some(existing => existing.french === word.french)) {
+      existingWords.push(word)
+    }
+  })
+
+  // If all words have the same gender, return as single primary group
+  if (genderMap.size === 1) {
+    const gender = genderMap.keys().next().value!
+    return [{
+      gender,
+      words: genderMap.get(gender)!,
+      isPrimary: true
+    }]
+  }
+
+  // Find the gender with the most words (primary group)
+  let primaryGender = ''
+  let maxCount = 0
+  genderMap.forEach((words, gender) => {
+    if (words.length > maxCount) {
+      maxCount = words.length
+      primaryGender = gender
+    }
+  })
+
+  // Create result array with primary group first, then secondary groups
+  const result: GenderGroup[] = []
+  
+  // Add primary group
+  result.push({
+    gender: primaryGender,
+    words: genderMap.get(primaryGender)!,
+    isPrimary: true
+  })
+
+  // Add secondary groups
+  genderMap.forEach((words, gender) => {
+    if (gender !== primaryGender) {
+      result.push({
+        gender,
+        words,
+        isPrimary: false
+      })
+    }
+  })
+
+  return result
+}
