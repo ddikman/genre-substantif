@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { dictionary } from '../services/dictionary'
-import { DictionaryWord } from '../models/dictionaryWord'
+import type { DictionaryWord } from '../models/dictionaryWord'
 import AppButton from './AppButton.vue'
 
 const route = useRoute()
@@ -20,15 +20,23 @@ onMounted(() => {
   searchQuery.value = query
 })
 
-// Update URL when parameters change
-watch([currentPage, searchQuery], () => {
+// Reset to page 1 when search query changes
+watch(searchQuery, () => {
+  currentPage.value = 1
+  updateURL()
+})
+
+// Update URL when page changes
+watch(currentPage, updateURL)
+
+function updateURL() {
   router.push({
     query: {
-      page: currentPage.value,
+      page: currentPage.value === 1 ? undefined : currentPage.value,
       query: searchQuery.value || undefined
     }
   })
-})
+}
 
 const filteredDictionary = computed(() => {
   if (!searchQuery.value) return dictionary
@@ -78,6 +86,9 @@ const prevPage = () => {
         <span class="gender">{{ word.gen === 'm' ? 'masculine' : 'feminine' }}</span>
         <span class="english">{{ word.en }}</span>
       </div>
+      <div v-if="paginatedWords.length === 0" class="no-results">
+        No words found matching your search.
+      </div>
     </div>
 
     <div class="pagination">
@@ -126,6 +137,7 @@ const prevPage = () => {
 
 .words-container {
   margin-bottom: 20px;
+  min-height: 400px;
 }
 
 .word-item {
@@ -160,5 +172,12 @@ const prevPage = () => {
 
 .page-info {
   color: var(--color-text-light);
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-light);
+  font-style: italic;
 }
 </style>
