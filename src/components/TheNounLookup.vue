@@ -5,7 +5,7 @@ import { ref, watch, computed, onMounted } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { FEMININE, Word } from '../models/word';
 import { addRecentWord, getMostRecentWord } from '../stores/recentWords';
-import { lookupWord } from '../services/lookupWord';
+import { lookupWord, groupWordsByGender, GenderGroup } from '../services/lookupWord';
 import { dictionary } from '../services/dictionary';
 import TheNotFoundNotice from './TheNotFoundNotice.vue';
 import AppClientOnly from './AppClientOnly.vue';
@@ -14,6 +14,7 @@ import { getSingularForm } from '../services/getSingularForm';
 import { logEvent } from '../services/logEvent';
 
 const matches = ref<Word[]>([])
+const genderGroups = ref<GenderGroup[]>([])
 const singularForm = ref<string | null>()
 
 function addMatch(match: Word) {
@@ -22,6 +23,7 @@ function addMatch(match: Word) {
 
 const lookupAndReplace = (value: string) => {
   matches.value = lookupWord(value)
+  genderGroups.value = groupWordsByGender(matches.value)
   singularForm.value = null;
   logEvent('lookupWord', { word: value })
 
@@ -37,6 +39,7 @@ const lookupAndReplace = (value: string) => {
       const singularMatches = lookupWord(singularForm.value)
       if (singularMatches.length > 0) {
         matches.value = singularMatches
+        genderGroups.value = groupWordsByGender(matches.value)
       } else {
         singularForm.value = null
       }
@@ -51,12 +54,19 @@ watch(searchTerm, () => debounceLookup(searchTerm.value))
 
 function loadPreviousLookup() {
   matches.value = [ getMostRecentWord(new Word('femme', FEMININE)) ]
+  genderGroups.value = groupWordsByGender(matches.value)
   searchTerm.value = matches.value[0]?.french || 'femme'
 }
 
 const english = computed(() => {
   if (matches.value.length > 0) {
-    return dictionary.filter((entry) => entry.fr === matches.value[0]?.french).map((entry) => entry.en).join(', ')
+    // Get English translations for all matches
+    const allTranslations = new Set<string>()
+    matches.value.forEach(word => {
+      dictionary.filter((entry) => entry.fr === word.french)
+        .forEach((entry) => allTranslations.add(entry.en))
+    })
+    return Array.from(allTranslations).join(', ')
   }
   return ''
 })
@@ -80,7 +90,28 @@ onMounted(loadPreviousLookup)
               <div v-if="matches.length > 0">
                 <p v-if="singularForm" class="mb-0">plural of <span class="accent-text">{{singularForm}}</span> which</p>
                 <p class="mb-2">means <span class="accent-text">{{ english }}</span> (EN) and is</p>
-                <div class="accent subtitle gender" v-bind:class="matches[0].gender">{{ matches[0].gender }}</div>
+                
+                <!-- Primary gender group -->
+                <div v-if="genderGroups.length > 0">
+                  <div v-for="group in genderGroups.filter(g => g.isPrimary)" :key="group.gender" class="primary-gender-group">
+                    <div class="accent subtitle gender" v-bind:class="group.gender">{{ group.gender }}</div>
+                    <div v-if="group.words.length > 1" class="word-list">
+                      <span v-for="(word, index) in group.words" :key="word.french" class="word-item">
+                        {{ word.french }}<span v-if="index < group.words.length - 1">, </span>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <!-- Secondary gender groups -->
+                  <div v-for="group in genderGroups.filter(g => !g.isPrimary)" :key="group.gender" class="secondary-gender-group mt-2">
+                    <p class="secondary-header">
+                      also <span class="accent-text">{{ group.gender }}</span>: 
+                      <span v-for="(word, index) in group.words" :key="word.french">
+                        {{ word.french }}<span v-if="index < group.words.length - 1">, </span>
+                      </span>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div v-else-if="searchTerm.trim().length === 0">
                 <p>Enter a french noun.</p>
@@ -131,6 +162,27 @@ onMounted(loadPreviousLookup)
 .accent-text {
   font-style: italic;
   color: var(--color-accent);
+}
+
+.word-list {
+  font-size: 14px;
+  margin-top: 4px;
+  color: #666;
+}
+
+.word-item {
+  font-weight: 500;
+}
+
+.secondary-gender-group {
+  margin-top: 8px;
+}
+
+.secondary-header {
+  font-size: 14px;
+  margin-bottom: 0;
+  color: #555;
+  font-weight: 400;
 }
 
 </style>
