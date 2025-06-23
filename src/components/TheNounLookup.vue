@@ -89,27 +89,26 @@ onMounted(loadPreviousLookup)
               <input type="text" id="word" v-model="searchTerm" class="mb-2" />
               <div v-if="matches.length > 0">
                 <p v-if="singularForm" class="mb-0">plural of <span class="accent-text">{{singularForm}}</span> which</p>
-                <p class="mb-2">means <span class="accent-text">{{ english }}</span> (EN) and is</p>
+                <p class="mb-2">means <span class="accent-text">{{ english }}</span> (EN)</p>
                 
+                <!-- Multiple gender notice -->
+                <p v-if="genderGroups.length > 1" class="multiple-gender-notice mb-2">
+                  This word can be used with multiple genders:
+                </p>
+
                 <!-- Primary gender group -->
                 <div v-if="genderGroups.length > 0">
-                  <div v-for="group in genderGroups.filter(g => g.isPrimary)" :key="group.gender" class="primary-gender-group">
+                  <div v-for="group in genderGroups" :key="group.gender" 
+                       :class="['gender-group', { 'primary': group.isPrimary, 'secondary': !group.isPrimary }]">
                     <div class="accent subtitle gender" v-bind:class="group.gender">{{ group.gender }}</div>
-                    <div v-if="group.words.length > 1" class="word-list">
+                    <div class="word-list">
                       <span v-for="(word, index) in group.words" :key="word.french" class="word-item">
                         {{ word.french }}<span v-if="index < group.words.length - 1">, </span>
                       </span>
                     </div>
-                  </div>
-                  
-                  <!-- Secondary gender groups -->
-                  <div v-for="group in genderGroups.filter(g => !g.isPrimary)" :key="group.gender" class="secondary-gender-group mt-2">
-                    <p class="secondary-header">
-                      also <span class="accent-text">{{ group.gender }}</span>: 
-                      <span v-for="(word, index) in group.words" :key="word.french">
-                        {{ word.french }}<span v-if="index < group.words.length - 1">, </span>
-                      </span>
-                    </p>
+                    <div v-if="group.words.length > 1" class="usage-note">
+                      (multiple forms with this gender)
+                    </div>
                   </div>
                 </div>
               </div>
@@ -176,23 +175,36 @@ onMounted(loadPreviousLookup)
   color: #444;
 }
 
-.secondary-gender-group {
-  margin-top: 12px;
-  padding: 8px 12px;
+.multiple-gender-notice {
+  color: var(--color-accent);
+  font-weight: 500;
+  padding: 8px;
   background-color: #f8f9fa;
   border-radius: 6px;
+  margin-top: 12px;
+}
+
+.gender-group {
+  margin: 16px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.gender-group.primary {
   border-left: 3px solid var(--color-accent);
 }
 
-.secondary-header {
-  font-size: 13px;
-  margin-bottom: 0;
-  color: #555;
-  font-weight: 400;
+.gender-group.secondary {
+  border-left: 3px solid #ccc;
+  margin-top: 8px;
 }
 
-.primary-gender-group {
-  text-align: center;
+.usage-note {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+  font-style: italic;
 }
 
 </style>
