@@ -16,12 +16,14 @@ import { logEvent } from '../services/logEvent';
 const matches = ref<Word[]>([])
 const genderGroups = ref<GenderGroup[]>([])
 const singularForm = ref<string | null>()
+const isSearching = ref(false)
 
 function addMatch(match: Word) {
   addRecentWord(match)
 }
 
 const lookupAndReplace = (value: string) => {
+  isSearching.value = true
   matches.value = lookupWord(value)
   genderGroups.value = groupWordsByGender(matches.value)
   singularForm.value = null;
@@ -45,6 +47,7 @@ const lookupAndReplace = (value: string) => {
       }
     }
   }
+  isSearching.value = false
 }
 
 const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
@@ -90,7 +93,7 @@ onMounted(loadPreviousLookup)
               <div v-if="matches.length > 0">
                 <p v-if="singularForm" class="mb-0">plural of <span class="accent-text">{{singularForm}}</span> which</p>
                 <p class="mb-2">means <span class="accent-text">{{ english }}</span> (EN) and is</p>
-                
+
                 <!-- Primary gender group -->
                 <div v-if="genderGroups.length > 0">
                   <div v-for="group in genderGroups.filter(g => g.isPrimary)" :key="group.gender" class="primary-gender-group">
@@ -101,17 +104,20 @@ onMounted(loadPreviousLookup)
                       </span>
                     </div>
                   </div>
-                  
+
                   <!-- Secondary gender groups -->
                   <div v-for="group in genderGroups.filter(g => !g.isPrimary)" :key="group.gender" class="secondary-gender-group mt-2">
                     <p class="secondary-header">
-                      also <span class="accent-text">{{ group.gender }}</span>: 
+                      also <span class="accent-text">{{ group.gender }}</span>:
                       <span v-for="(word, index) in group.words" :key="word.french">
                         {{ word.french }}<span v-if="index < group.words.length - 1">, </span>
                       </span>
                     </p>
                   </div>
                 </div>
+              </div>
+              <div v-else-if="isSearching">
+                <p>Searching...</p>
               </div>
               <div v-else-if="searchTerm.trim().length === 0">
                 <p>Enter a french noun.</p>
