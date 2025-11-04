@@ -23,37 +23,42 @@ function addMatch(match: Word) {
 }
 
 const lookupAndReplace = (value: string) => {
-  isSearching.value = true
-  matches.value = lookupWord(value)
-  genderGroups.value = groupWordsByGender(matches.value)
-  singularForm.value = null;
-  logEvent('lookupWord', { word: value })
+  try {
+    matches.value = lookupWord(value)
+    genderGroups.value = groupWordsByGender(matches.value)
+    singularForm.value = null;
+    logEvent('lookupWord', { word: value })
 
-  // if all matches are the same, replace the search term with the actual word
-  const uniqueFrenchMatches = new Set(matches.value.map(w => w.french))
-  if (uniqueFrenchMatches.size === 1) {
-    // correct search term to add accents or so to match the actual word
-    searchTerm.value = matches.value[0].french
-    addMatch(matches.value[0])
-  } else if (uniqueFrenchMatches.size === 0) {
-    singularForm.value = getSingularForm(value)
-    if (singularForm.value) {
-      const singularMatches = lookupWord(singularForm.value)
-      if (singularMatches.length > 0) {
-        matches.value = singularMatches
-        genderGroups.value = groupWordsByGender(matches.value)
-      } else {
-        singularForm.value = null
+    // if all matches are the same, replace the search term with the actual word
+    const uniqueFrenchMatches = new Set(matches.value.map(w => w.french))
+    if (uniqueFrenchMatches.size === 1) {
+      // correct search term to add accents or so to match the actual word
+      searchTerm.value = matches.value[0].french
+      addMatch(matches.value[0])
+    } else if (uniqueFrenchMatches.size === 0) {
+      singularForm.value = getSingularForm(value)
+      if (singularForm.value) {
+        const singularMatches = lookupWord(singularForm.value)
+        if (singularMatches.length > 0) {
+          matches.value = singularMatches
+          genderGroups.value = groupWordsByGender(matches.value)
+        } else {
+          singularForm.value = null
+        }
       }
     }
+  } finally {
+    isSearching.value = false
   }
-  isSearching.value = false
 }
 
 const WAIT_MS_UNTIL_NEXT_LOOKUP = 500
 const debounceLookup = useDebounceFn(lookupAndReplace, WAIT_MS_UNTIL_NEXT_LOOKUP)
 
-watch(searchTerm, () => debounceLookup(searchTerm.value))
+watch(searchTerm, () => {
+  isSearching.value = true
+  debounceLookup(searchTerm.value)
+})
 
 function loadPreviousLookup() {
   matches.value = [ getMostRecentWord(new Word('femme', FEMININE)) ]
