@@ -22624,7 +22624,7 @@ export const dictionary: DictionaryWord[] = [
     "gen": "f"
   },
   {
-    "fr": "étudiant",
+    "fr": "étudiante",
     "en": "student",
     "gen": "f"
   },
